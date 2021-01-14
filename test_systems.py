@@ -12,12 +12,13 @@
 #    3 EC2 instances deployed with "Name" tags of IT-PIPELINE, IT-PROD, IT-DEV.
 #    This test should be run from the IT-PIPELINE instance as it checks availibilty
 #    of both public and private IPv4 addresses.
-#    The "aws configure" has been completed to allow the use of the boto3 API
+#    The "aws configure" process has been completed to allow the use of the boto3 API
 #
 # Each system is tested only for SSH (socket open on port 22) and HTTP
-# (200 stauts return on port 80).
+# (200 status return on port 80).
 #
-# Successful deployments will result in all tests passing.
+# Successful deployments will result in all tests passing, that includes some
+# sockets NOT being open.
 # 
 
 import boto3
