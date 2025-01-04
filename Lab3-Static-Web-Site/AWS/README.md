@@ -51,4 +51,4 @@ wget http://$YOUR_BUCKET_NAME.s3-website.$REGION.amazonaws.com
 ```
 ### Sample screenshots
 ![CLI screen capture](lab3-aws-cli.png)
-![Website home page](images/lab3-aws-website.png)
+![Website home page](lab3-aws-website.png)
