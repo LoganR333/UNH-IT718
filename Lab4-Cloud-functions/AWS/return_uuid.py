@@ -5,6 +5,14 @@ def lambda_handler(event, context):
     # Generate a UUID
     print("Event:", json.dumps(event))
     print("Context:", str(context))
+    
+    path = event.get('rawPath', '/')
+    if path == '/favicon.ico':
+        return {
+            "statusCode": 404,
+            "body": "Not Found"
+        }
+    
     res = get_response()
     print(json.dumps(res))
     return(res)
