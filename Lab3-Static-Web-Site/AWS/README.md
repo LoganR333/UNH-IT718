@@ -3,7 +3,7 @@
 2.	Push the web content to cloud storage.
 3.	Make the cloud storage publicly available.
 
-## Set up your environment:
+### Set up your environment:
 ```
 mkdir html
 cd html
@@ -37,13 +37,18 @@ aws s3api put-bucket-website --bucket $YOUR_BUCKET_NAME --website-configuration 
 }'
 ```
 ### Set AWS service access policy
-Use the policy.json in this directory
-
+Use the policy.json in this directory. Replace the BUCKET_NAME placeholder with you bucket.
+```
 aws s3api put-bucket-policy --bucket $YOUR_BUCKET_NAME --policy file://policy.json
-
-# Upload content from current directory
+```
+### Upload content from current directory
+```
 aws s3 sync ./ s3://$YOUR_BUCKET_NAME/
-
-# Retrieve website URL
+```
+### Retrieve website home page for lab report
+```
 wget http://$YOUR_BUCKET_NAME.s3-website.$REGION.amazonaws.com
-
+```
+### Sample screenshots
+![CLI screen capture](images/lab3-cli-screenshot.png)
+![Website home page](images/lab3-website-home.png)
