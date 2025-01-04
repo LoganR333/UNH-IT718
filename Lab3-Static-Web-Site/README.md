@@ -27,5 +27,5 @@ For each cloud vendor show:
 1.	The output from the cloud shell showing a wget command retrieving the default page.
 2.	Screenshot of browser rendering your home page.
 3.	The URL to retrieve your website.
-   1. Provided as text, not a screenshot, in your lab report
-   2. The website needs to remain up until the lab is graded.
+   * Provided as text, not a screenshot, in your lab report
+   * The website needs to remain up until the lab is graded.
