@@ -10,44 +10,42 @@ cd html
 wget -O html.zip <your source>
 unzip html.zip
 
-YOUR_BUCKET_NAME=<your-globally-unique-name>
-REGION=us-east-2
-SOURCE_PATH=./
+ACCOUNT=it718lab3
+RESOURCE_GROUP=it718lab3
+REGION=eastus
 ```
-### Create bucket
+### Create a resource group
 ```
-aws s3api create-bucket \
-    --bucket $YOUR_BUCKET_NAME \
-    --region $REGION \
-    --create-bucket-configuration LocationConstraint=$REGION
+az group create --name $RESOURCE_GROUP --location $REGION
 ```
-### Allow public access
+### Create a storage account
 ```
-aws s3api put-bucket-ownership-controls \
-    --bucket $YOUR_BUCKET_NAME \
-    --ownership-controls 'Rules=[{ObjectOwnership=ObjectWriter}]'
-
-aws s3api put-public-access-block \
-  --bucket $YOUR_BUCKET_NAME \
-  --public-access-block-configuration   "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
-
-aws s3api put-bucket-website --bucket $YOUR_BUCKET_NAME --website-configuration '{
-    "IndexDocument": { "Suffix": "index.html"},
-    "ErrorDocument": { "Key": "error.html" }
-}'
+az storage account create \
+    --name "$ACCOUNT" \
+    --resource-group $RESOURCE_GROUP \
+    --location $REGION \
+    --sku Standard_LRS
 ```
-### Set AWS service access policy
-Use the policy.json in this directory. Replace the BUCKET_NAME placeholder with you bucket.
+### Enable the storage account as a website
 ```
-aws s3api put-bucket-policy --bucket $YOUR_BUCKET_NAME --policy file://policy.json
+az storage blob service-properties update \
+    --account-name "$ACCOUNT" \
+    --static-website \
+    --index-document index.html
 ```
-### Upload content from current directory
+### Move your content to the cloud
 ```
-aws s3 sync ./ s3://$YOUR_BUCKET_NAME/
+az storage blob upload-batch \
+    --account-name "$ACCOUNT" \
+    --destination '$web' \
+    --source ./
 ```
-### Retrieve website home page for lab report
+### Retrieve the URL
 ```
-wget http://$YOUR_BUCKET_NAME.s3-website.$REGION.amazonaws.com
+az storage account show \
+    --name "$ACCOUNT" \
+    --query "primaryEndpoints.web" \
+    --output tsv
 ```
 ### Sample screenshots
 ![CLI screen capture](lab3-azure-cli.png)
