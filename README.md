@@ -6,13 +6,12 @@
 
 The course has 8 labs, materials for each lab has a dedicated folder.  Lab cover AWS, Azure, and GCP.
 Lab order
-Signup, CLI, and setting budgets
-Compute
-Static Web Site
-Cloud Functions
-Database
-Github Actions
-Identity (OIDC)
-Kubernetes
+1. Signup, CLI, and setting budgets
+2. Basic Compute
+3. Static Web Site
+4. Cloud Functions
+5. Database
+6. Github Actions
+7. Identity (OIDC)
+8. Kubernetes
 
-![image](https://github.com/user-attachments/assets/ecee3272-bc0c-4d0f-a137-13b02909ad65)
