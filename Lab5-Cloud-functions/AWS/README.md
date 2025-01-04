@@ -36,3 +36,6 @@ def lambda_handler(event, context):
         "body": html_content
     }
 ```
+### Sample screenshots
+![CLI screen capture](lab5-aws-cli.png)
+![Website home page](lab5-aws-website.png)
