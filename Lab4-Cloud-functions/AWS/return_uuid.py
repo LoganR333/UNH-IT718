@@ -26,9 +26,7 @@ def get_response():
     </body>
     </html>
     """
-    
-    html_content = html_1 + generated_uuid + html_2
-    
+  
     # Return the response with the Set-Cookie header
     return {
         "statusCode": 200,
