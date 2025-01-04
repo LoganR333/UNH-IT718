@@ -6,7 +6,7 @@ def lambda_handler(event, context):
     print("Event:", json.dumps(event))
     print("Context:", str(context))
     res = get_response()
-    print(json.dumpd(res))
+    print(json.dumps(res))
     return(res)
 
 def get_response():
