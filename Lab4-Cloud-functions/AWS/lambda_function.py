@@ -1,6 +1,7 @@
 import json
 import uuid
 
+
 def lambda_handler(event, context):
     # Generate a UUID
     generated_uuid = str(uuid.uuid4())
