@@ -12,7 +12,7 @@ Even if your website does more than simple GETs, offloading the static content (
 
 A simple "Hello World" webpage is enough to complete this lab.  But do your lab grade, yourself, and your semester end project a favor by pushing something more substantial.  Ideally, this is a good time to start building out your project by understanding how to publish web content.  
 
-Google search for templates, if you don't have existing content.  I have had success with both sources in the past: *[Github](https://github.com/website-templates)* and *[Html5Up](https://html5up.net/)*.  
+If you don't have existing content, a Google search for templates will find many options/  I have had success with these sources in the past: *[Github](https://github.com/website-templates)* and *[Html5Up](https://html5up.net/)*.  
 
 
 __Highly recommended but optional:__
