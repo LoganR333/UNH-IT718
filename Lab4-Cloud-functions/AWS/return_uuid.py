@@ -1,10 +1,11 @@
 import json
 import uuid
-
+import logging
 
 def lambda_handler(event, context):
     # Generate a UUID
     generated_uuid = str(uuid.uuid4())
+    logging.info(f"Generated UUID: {generated_uuid}")
     
     # Create HTML response
     html_content = f"""
@@ -25,7 +26,13 @@ def lambda_handler(event, context):
         "statusCode": 200,
         "headers": {
             "Content-Type": "text/html",
+            "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+            "Pragma": "no-cache",
+            "Expires": "0",
             "Set-Cookie": f"session-id={generated_uuid}; Path=/; HttpOnly"
         },
         "body": html_content
     }
+
+if __name__ == '__main__':
+     logging.info(lambda_handler(0,0))
