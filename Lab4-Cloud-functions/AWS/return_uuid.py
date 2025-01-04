@@ -4,7 +4,7 @@ import logging
 
 def lambda_handler(event, context):
     # Generate a UUID
-    generated_uuid = "monkeys" # str(uuid.uuid4())
+    generated_uuid = "monkeys:" + str(uuid.uuid4())
     logging.info(f"Generated UUID: {generated_uuid}")
     
     # Create HTML response
