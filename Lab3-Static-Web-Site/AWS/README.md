@@ -50,5 +50,5 @@ aws s3 sync ./ s3://$YOUR_BUCKET_NAME/
 wget http://$YOUR_BUCKET_NAME.s3-website.$REGION.amazonaws.com
 ```
 ### Sample screenshots
-![CLI screen capture](images/lab3-cli-screenshot.png)
-![Website home page](images/lab3-website-home.png)
+![CLI screen capture](lab3-aws-cli.png)
+![Website home page](images/lab3-aws-website.png)
