@@ -3,10 +3,12 @@ import uuid
 import logging
 
 def lambda_handler(event, context):
+    return generate_response()
+
+def generate_response():
     # Generate a UUID
-    a =  str(uuid.uuid4())
-    generated_uuid = "monkeys-" + a[9:]
-    logging.info(f"Generated UUID: {generated_uuid}")
+    generated_uuid = "monkeys-" + str(uuid.uuid4())
+    print(f"Generated UUID: {generated_uuid}")
     
     # Create HTML response
     html_content = f"""
@@ -36,4 +38,4 @@ def lambda_handler(event, context):
     }
 
 if __name__ == '__main__':
-     logging.info(lambda_handler(0,0))
+     print(lambda_handler(0,0))
