@@ -2,24 +2,17 @@ import json
 import uuid
 
 def lambda_handler(event, context):
-    # Generate a UUID
-    print("Event:", json.dumps(event))
-    print("Context:", str(context))
-    
     path = event.get('rawPath', '/')
     if path == '/favicon.ico':
         return {
             "statusCode": 404,
             "body": "Not Found"
         }
-    
-    res = get_response()
-    print(json.dumps(res))
-    return(res)
+    return(get_response())
 
 def get_response():
+    # Generate a UUID
     generated_uuid = str(uuid.uuid4())
-    print(f"Generated UUID: {generated_uuid}")
     
     # Create HTML response
     html_content = f"""
@@ -47,3 +40,6 @@ def get_response():
         },
         "body": html_content
     }
+
+if __name__ == '__main__':
+     print(lambda_handler(0,0))
