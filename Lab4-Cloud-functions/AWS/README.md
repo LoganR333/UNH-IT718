@@ -45,10 +45,10 @@ aws lambda add-permission \
     --function-url-auth-type NONE \
     --statement-id FunctionURLPublicAccess
 ```
-### Retrieve URL
+### Retrieve URL for lab report
 ```
 aws lambda get-function-url-config --function-name return_uuid --query "FunctionUrl" --output text
 ```
-### Sample screenshots
+### Sample screenshots for lab report
 ![CLI screen capture](lab4-aws-cli.png)
 ![Website home page](lab4-aws-website.png)
