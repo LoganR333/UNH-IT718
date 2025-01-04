@@ -1,6 +1,5 @@
 import json
 import uuid
-import logging
 
 def lambda_handler(event, context):
     # Generate a UUID
@@ -38,6 +37,3 @@ def lambda_handler(event, context):
         },
         "body": html_content
     }
-
-if __name__ == '__main__':
-     print(lambda_handler(0,0))
