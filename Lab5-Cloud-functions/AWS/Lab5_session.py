@@ -4,7 +4,7 @@ import uuid
 from http import cookies
 
 # Initialize DynamoDB client and table
-DYNAMO_TABLE_NAME = 'your_table_name'
+DYNAMO_TABLE_NAME = 'Lab5_session'
 dynamo = boto3.resource('dynamodb').Table(DYNAMO_TABLE_NAME)
 
 def lambda_handler(event, context):
