@@ -6,8 +6,10 @@
 ### Deploy cloud function
 Using IAM and deployment process from previous lab (names and policy edits)
 ```
-aws iam create-role --role-name Lab5BasicExecution --assume-role-policy-document file://policy.json
-ROLE_ARN=` aws iam get-role --role-name Lab5BasicExecution --query "Role.Arn" --output text`
+aws iam create-role --role-name LambdaDynamoDBRole --assume-role-policy-document file://trust-policy.json
+ROLE_ARN=` aws iam get-role --role-name LambdaDynamoDBRole --query "Role.Arn" --output text`
+aws iam put-role-policy --role-name LambdaDynamoDBRole --policy-name DynamoDBAccessPolicy \
+    --policy-document policy.json
 zip function.zip Lab5_session.py
 aws lambda create-function --function-name Lab5_session --runtime python3.13 \
     --role $ROLE_ARN --handler Lab5_session.lambda_handler --zip-file fileb://function.zip
@@ -24,7 +26,7 @@ aws dynamodb create-table \
 
 ### Retrieve URL for lab report
 ```
-aws lambda get-function-url-config --function-name return_uuid --query "FunctionUrl" --output text
+aws lambda get-function-url-config --function-name Lab5_session --query "FunctionUrl" --output text
 ```
 
 ### Sample screenshots
