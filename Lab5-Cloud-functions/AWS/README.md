@@ -4,47 +4,53 @@
 3.	Make the cloud storage publicly available.
 
 ### Creat Database
+```
 aws dynamodb create-table \
-    --table-name Lab5_session \
+    --table-name Lab5-session \
     --attribute-definitions AttributeName=email,AttributeType=S \
     --key-schema AttributeName=email,KeyType=HASH \
     --billing-mode PAY_PER_REQUEST
-DB_ARN=`aws dynamodb describe-table --table-name Lab5_session --query "Table.TableArn" --output text`
-
+DB_ARN=`aws dynamodb describe-table --table-name Lab5-session --query "Table.TableArn" --output text`
+sed -i 's/YOUR_DB_ARN/$DB_ARN/g' Lab5-dynamodb-policy.json
+```
 ### Create an IAM Role for Lambd
+```
 aws iam create-role \
     --role-name Lab5-LambdaDynamoDBRole \
     --assume-role-policy-document file://Lab5-trust-policy.json
 ROLE_ARN=` aws iam get-role --role-name Lab5-LambdaDynamoDBRole --query "Role.Arn" --output text`
-
+```
 ### Deploy cloud function
-zip function.zip Lab5_session.py
-aws lambda create-function --function-name Lab5_session --runtime python3.13 \
-    --role $ROLE_ARN --handler Lab5_session.lambda_handler --zip-file fileb://function.zip
-aws lambda create-function-url-config --function-name Lab5_session --auth-type NONE
+```
+zip function.zip Lab5-session.py
+aws lambda create-function --function-name Lab5-session --runtime python3.13 \
+    --role $ROLE_ARN --handler Lab5-session.lambda_handler --zip-file fileb://function.zip
+aws lambda create-function-url-config --function-name Lab5-session --auth-type NONE
 aws lambda add-permission --function-name Lab5_session --action lambda:InvokeFunctionUrl \
     --principal "*" --function-url-auth-type NONE --statement-id FunctionURLPublicAccess
-
+```
 ### Attach DynamoDB Permissions to the Role
+```
 aws iam put-role-policy \
     --role-name Lab5-LambdaDynamoDBRole \
     --policy-name Lab5-DynamoDBAccessPolicy \
     --policy-document file://Lab5-dynamodb-policy.json
-
+```
 ### Attach Additional Permissions for Lambda Execution
+```
 aws iam attach-role-policy \
     --role-name Lab5-LambdaDynamoDBRole \
     --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-
+```
 ### Attach the Role to the Lambda Function
+```
 aws lambda update-function-configuration \
     --function-name Lab5-session \
     --role arn:aws:iam::<account-id>:role/Lab5-LambdaDynamoDBRole
-
-
+```
 ### Retrieve URL for lab report
 ```
-aws lambda get-function-url-config --function-name Lab5_session --query "FunctionUrl" --output text
+aws lambda get-function-url-config --function-name Lab5-session --query "FunctionUrl" --output text
 ```
 
 ### Sample screenshots
