@@ -23,9 +23,10 @@ ROLE_ARN=` aws iam get-role --role-name Lab5-LambdaDynamoDBRole --query "Role.Ar
 ```
 zip function.zip Lab5-session.py
 aws lambda create-function --function-name Lab5-session --runtime python3.13 \
-    --role $ROLE_ARN --handler Lab5-session.lambda_handler --zip-file fileb://function.zip
+    --role $ROLE_ARN --handler Lab5-session.lambda_handler --zip-file fileb://function.zip \
+    --query "FunctionName" --output text
 aws lambda create-function-url-config --function-name Lab5-session --auth-type NONE
-aws lambda add-permission --function-name Lab5_session --action lambda:InvokeFunctionUrl \
+aws lambda add-permission --function-name Lab5-session --action lambda:InvokeFunctionUrl \
     --principal "*" --function-url-auth-type NONE --statement-id FunctionURLPublicAccess
 ```
 ### Attach DynamoDB Permissions to the Role
