@@ -3,15 +3,14 @@
 2.	Push the web content to cloud storage.
 3.	Make the cloud storage publicly available.
 
-### Creat Database
+### Create Database
 ```
-aws dynamodb create-table \
+DB_ARN=`aws dynamodb create-table \
     --table-name Lab5-session \
     --attribute-definitions AttributeName=email,AttributeType=S \
     --key-schema AttributeName=email,KeyType=HASH \
-    --billing-mode PAY_PER_REQUEST
-DB_ARN=`aws dynamodb describe-table --table-name Lab5-session --query "Table.TableArn" --output text`
-sed -i 's/YOUR_DB_ARN/$DB_ARN/g' Lab5-dynamodb-policy.json
+    --billing-mode PAY_PER_REQUEST --query "TableDescription.TableArn" --output text`
+sed -i "s|YOUR_DB_ARN|${DB_ARN}|g" Lab5-dynamodb-policy.json
 ```
 ### Create an IAM Role for Lambd
 ```
