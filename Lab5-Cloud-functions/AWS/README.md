@@ -3,22 +3,28 @@
 2.	Push the web content to cloud storage.
 3.	Make the cloud storage publicly available.
 
+### Deploy cloud function
+Using IAM and deployment process from previous lab (names and policy edits)
+```
+aws iam create-role --role-name Lab5BasicExecution --assume-role-policy-document file://policy.json
+ROLE_ARN=` aws iam get-role --role-name Lab5BasicExecution --query "Role.Arn" --output text`
+zip function.zip Lab5_session.py
+aws lambda create-function --function-name Lab5_session --runtime python3.13 \
+    --role $ROLE_ARN --handler Lab5_session.lambda_handler --zip-file fileb://function.zip
+aws lambda create-function-url-config --function-name Lab5_session --auth-type NONE
+aws lambda add-permission --function-name Lab5_session --action lambda:InvokeFunctionUrl \
+    --principal "*" --function-url-auth-type NONE --statement-id FunctionURLPublicAccess
+```
 ### Creat Database
 aws dynamodb create-table \
-    --table-name manage_session \
+    --table-name Lab5_session \
     --attribute-definitions AttributeName=email,AttributeType=S \
     --key-schema AttributeName=email,KeyType=HASH \
     --billing-mode PAY_PER_REQUEST
 
-### Deploy cloud function using IAM and deployment process from previous lab
+### Retrieve URL for lab report
 ```
-ROLE_ARN=` aws iam get-role --role-name LambdaBasicExecutionRole --query "Role.Arn" --output text`
-zip function.zip manage_session.py
-aws lambda create-function --function-name manage_session --runtime python3.13 \
-    --role $ROLE_ARN --handler manage_session.lambda_handler --zip-file fileb://function.zip
-aws lambda create-function-url-config --function-name manage_session --auth-type NONE
-aws lambda add-permission --function-name manage_session --action lambda:InvokeFunctionUrl \
-    --principal "*" --function-url-auth-type NONE --statement-id FunctionURLPublicAccess
+aws lambda get-function-url-config --function-name return_uuid --query "FunctionUrl" --output text
 ```
 
 ### Sample screenshots
