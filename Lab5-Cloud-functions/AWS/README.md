@@ -3,26 +3,44 @@
 2.	Push the web content to cloud storage.
 3.	Make the cloud storage publicly available.
 
-### Deploy cloud function
-Using IAM and deployment process from previous lab (names and policy edits)
-```
-aws iam create-role --role-name LambdaDynamoDBRole --assume-role-policy-document file://trust-policy.json
-ROLE_ARN=` aws iam get-role --role-name LambdaDynamoDBRole --query "Role.Arn" --output text`
-aws iam put-role-policy --role-name LambdaDynamoDBRole --policy-name DynamoDBAccessPolicy \
-    --policy-document policy.json
-zip function.zip Lab5_session.py
-aws lambda create-function --function-name Lab5_session --runtime python3.13 \
-    --role $ROLE_ARN --handler Lab5_session.lambda_handler --zip-file fileb://function.zip
-aws lambda create-function-url-config --function-name Lab5_session --auth-type NONE
-aws lambda add-permission --function-name Lab5_session --action lambda:InvokeFunctionUrl \
-    --principal "*" --function-url-auth-type NONE --statement-id FunctionURLPublicAccess
-```
 ### Creat Database
 aws dynamodb create-table \
     --table-name Lab5_session \
     --attribute-definitions AttributeName=email,AttributeType=S \
     --key-schema AttributeName=email,KeyType=HASH \
     --billing-mode PAY_PER_REQUEST
+DB_ARN=`aws dynamodb describe-table --table-name Lab5_session --query "Table.TableArn" --output text`
+
+### Create an IAM Role for Lambd
+aws iam create-role \
+    --role-name Lab5-LambdaDynamoDBRole \
+    --assume-role-policy-document file://Lab5-trust-policy.json
+ROLE_ARN=` aws iam get-role --role-name Lab5-LambdaDynamoDBRole --query "Role.Arn" --output text`
+
+### Deploy cloud function
+zip function.zip Lab5_session.py
+aws lambda create-function --function-name Lab5_session --runtime python3.13 \
+    --role $ROLE_ARN --handler Lab5_session.lambda_handler --zip-file fileb://function.zip
+aws lambda create-function-url-config --function-name Lab5_session --auth-type NONE
+aws lambda add-permission --function-name Lab5_session --action lambda:InvokeFunctionUrl \
+    --principal "*" --function-url-auth-type NONE --statement-id FunctionURLPublicAccess
+
+### Attach DynamoDB Permissions to the Role
+aws iam put-role-policy \
+    --role-name Lab5-LambdaDynamoDBRole \
+    --policy-name Lab5-DynamoDBAccessPolicy \
+    --policy-document file://Lab5-dynamodb-policy.json
+
+### Attach Additional Permissions for Lambda Execution
+aws iam attach-role-policy \
+    --role-name Lab5-LambdaDynamoDBRole \
+    --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+### Attach the Role to the Lambda Function
+aws lambda update-function-configuration \
+    --function-name Lab5-session \
+    --role arn:aws:iam::<account-id>:role/Lab5-LambdaDynamoDBRole
+
 
 ### Retrieve URL for lab report
 ```
