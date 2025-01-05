@@ -1,4 +1,4 @@
-# Accoutn Setup
+# Account Setup
 
 ### Objectives
 
