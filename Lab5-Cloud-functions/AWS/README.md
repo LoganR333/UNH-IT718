@@ -3,39 +3,24 @@
 2.	Push the web content to cloud storage.
 3.	Make the cloud storage publicly available.
 
-### Review sample code
-```
-import json
-import uuid
+### Creat Database
+aws dynamodb create-table \
+    --table-name manage_session \
+    --attribute-definitions AttributeName=email,AttributeType=S \
+    --key-schema AttributeName=email,KeyType=HASH \
+    --billing-mode PAY_PER_REQUEST
 
-def lambda_handler(event, context):
-    # Generate a UUID
-    generated_uuid = str(uuid.uuid4())
-    
-    # Create HTML response
-    html_content = f"""
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Welcome</title>
-    </head>
-    <body>
-        <h1>Hello, World!</h1>
-        <p>Your session UUID has been set.</p>
-    </body>
-    </html>
-    """
-    
-    # Return the response with the Set-Cookie header
-    return {
-        "statusCode": 200,
-        "headers": {
-            "Content-Type": "text/html",
-            "Set-Cookie": f"session-id={generated_uuid}; Path=/; HttpOnly"
-        },
-        "body": html_content
-    }
+### Deploy cloud function using IAM and deployment process from previous lab
 ```
+ROLE_ARN=` aws iam get-role --role-name LambdaBasicExecutionRole --query "Role.Arn" --output text`
+zip function.zip manage_session.py
+aws lambda create-function --function-name manage_session --runtime python3.13 \
+    --role $ROLE_ARN --handler manage_session.lambda_handler --zip-file fileb://function.zip
+aws lambda create-function-url-config --function-name manage_session --auth-type NONE
+aws lambda add-permission --function-name manage_session --action lambda:InvokeFunctionUrl \
+    --principal "*" --function-url-auth-type NONE --statement-id FunctionURLPublicAccess
+```
+
 ### Sample screenshots
 ![CLI screen capture](lab5-aws-cli.png)
 ![Website home page](lab5-aws-website.png)
