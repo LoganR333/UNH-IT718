@@ -46,13 +46,13 @@ aws iam attach-role-policy \
 ```
 aws lambda update-function-configuration \
     --function-name Lab5-session \
-    --role arn:aws:iam::<account-id>:role/Lab5-LambdaDynamoDBRole
+    --role $ROLE_ARN  --query "Role" --output text
 ```
 ### Retrieve URL for lab report
 ```
 aws lambda get-function-url-config --function-name Lab5-session --query "FunctionUrl" --output text
 ```
+### Lab report commands to validate deployment
+The sample screenshot below shows adding a new user (twice to generate a new and old uuid).  Then testing both the new and old uuid.
 
-### Sample screenshots
-![CLI screen capture](lab5-aws-cli.png)
-![Website home page](lab5-aws-website.png)
+![CLI screen capture](Lab5-AWS-cli.png)
