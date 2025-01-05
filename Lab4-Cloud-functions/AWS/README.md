@@ -50,5 +50,5 @@ aws lambda add-permission \
 aws lambda get-function-url-config --function-name return_uuid --query "FunctionUrl" --output text
 ```
 ### Sample screenshots for lab report
-![CLI screen capture](lab4-aws-cli.png)
-![Website home page](lab4-aws-website.png)
+![CLI screen capture](lab4-AWS-cli.png)
+![Website home page](lab4-AWS-website.png)
