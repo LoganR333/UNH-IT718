@@ -75,4 +75,5 @@ echo "HTTP: http://$EXTERNAL_IP"
 ```
 # Lab Report
 Show retrieving the default nginx page and ssh login
+
 ![cli](Lab2-GCP-cli.png)
