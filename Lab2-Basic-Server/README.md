@@ -6,11 +6,11 @@ For each of the three major cloud vendors (AWS, Azure, and GCP) complete the fol
 3.	Verify running web page.
 4.	In he console terminate the running instance.
 ### Comments about this lab
-There are many, many, ways to deploy a server to the cloud.  This is true for every cloud vendor.  As discussed in class it is easy to follow some web-based wizard and in a few clicks have a running server.
-This lab focuses on the API calls needed for a server deployment.
-In the real-world, deployments abstract away the cloud provider's API into templates, scripts, CI/CD processes.
-Deploying a server requires supporting infrastructure:  networking (VPC, subnets), security (keys, security groups) are common examples.
-The provided scripts assume the basic infrastructure needs to be created.  It is also assumed that you would like to keep the infrastructure created for later labs.
+- There are many, many, ways to deploy a server to the cloud.  This is true for every cloud vendor.  As discussed in class it is easy to follow some web-based wizard and in a few clicks have a running server.
+- This lab focuses on the API calls needed for a server deployment.
+- In the real-world, deployments abstract away the cloud provider's API into templates, scripts, CI/CD processes.
+- Deploying a server requires supporting infrastructure:  networking (VPC, subnets), security (keys, security groups) are common examples.
+- The provided scripts assume the basic infrastructure needs to be created.  It is also assumed that you would like to keep the infrastructure created for later labs.
 **BEFORE JUST BLINDLY CUTTING & PASTING:**
 Should you alter the scripts to use existing infrastructure?
 Do you want to keep any created resources?  More meaningful names should be considered.
