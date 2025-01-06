@@ -1,0 +1,7 @@
+package_update: true
+package_upgrade: true
+packages:
+  - nginx
+runcmd:
+  - systemctl start nginx
+  - systemctl enable nginx
