@@ -44,7 +44,7 @@ zip -r functionapp.zip .
 az functionapp deployment source config-zip \
     --resource-group $RESOURCE_GROUP \
     --name return-uuid \
-    --src function.zip
+    --src functionapp.zip
 ```
 ### Get the URL: Use the following command to retrieve the function’s URL:
 ```
