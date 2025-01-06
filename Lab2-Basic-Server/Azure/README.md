@@ -104,3 +104,7 @@ PUBLIC_IP=$(az vm show --resource-group $RESOURCE_GROUP --name $VM_NAME --show-d
 echo "SSH: ssh $ADMIN_USERNAME@$PUBLIC_IP"
 echo "HTTP: http://$PUBLIC_IP"
 ```
+# Lab Report
+Show retirieving the ngnix default page and SSH login:
+![wget](Lab2-Azure-cli.png)
+![ssh](Lab2-Azure-ssh.png)
