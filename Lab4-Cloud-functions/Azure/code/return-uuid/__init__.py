@@ -2,7 +2,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # Check if the request is for favicon.ico
     if req.url.endswith('/favicon.ico'):
         return func.HttpResponse("", status_code=204) 
-    return get_response()
+    return "hello world" # get_response()
 
 def get_response():
     # Generate a UUID
