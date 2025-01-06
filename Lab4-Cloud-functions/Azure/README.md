@@ -32,6 +32,7 @@ az functionapp create \
     --runtime-version 3.11 \
     --functions-version 4 \
     --name return-uuid \
+    --template "HTTP" --auth-level "Anonymous" \
     --storage-account $ACCOUNT  --os-type Linux
 ```
 ### Create functionzip
