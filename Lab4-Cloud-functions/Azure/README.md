@@ -2,7 +2,27 @@
 1.	Review package elements (sample code provided).
 2.	Deploy the function.
 3.	Validate execution.
-*Note:* The function needs to remain available until the lab is graded.
+4.	
+*Note: The function needs to remain available until the lab is graded.*
+
+### Set up your environment:
+```
+ACCOUNT=it718lab4
+RESOURCE_GROUP=it718lab4
+REGION=eastus
+```
+### Create a resource group
+```
+az group create --name $RESOURCE_GROUP --location $REGION
+```
+### Create a storage account
+```
+az storage account create \
+    --name "$ACCOUNT" \
+    --resource-group $RESOURCE_GROUP \
+    --location $REGION \
+    --sku Standard_LRS
+```
 
 ```
 az functionapp create \
