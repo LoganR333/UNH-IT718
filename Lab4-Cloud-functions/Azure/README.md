@@ -34,8 +34,6 @@ az functionapp create \
     --name return-uuid \
     --storage-account $ACCOUNT  --os-type Linux
 ```
-Add Function Code: Save the following code as __init__.py:
-import logging
 ### Create functionzip
 ```
 cd <project-folder>
@@ -45,7 +43,7 @@ zip -r functionapp.zip .
 ```
 az functionapp deployment source config-zip \
     --resource-group $RESOURCE_GROUP \
-    --name return-uid \
+    --name return-uuid \
     --src function.zip
 ```
 ### Get the URL: Use the following command to retrieve the function’s URL:
