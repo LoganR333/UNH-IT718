@@ -23,16 +23,16 @@ az storage account create \
     --location $REGION \
     --sku Standard_LRS
 ```
-
+### Create cloud function
 ```
 az functionapp create \
-    --resource-group YOUR_RESOURCE_GROUP \
-    --consumption-plan-location westus \
+    --resource-group $RESOURCE_GROUP \
+    --consumption-plan-location $REGION \
     --runtime python \
-    --runtime-version 3.9 \
+    --runtime-version 3.11 \
     --functions-version 4 \
-    --name hello-world-webpage \
-    --storage-account YOUR_STORAGE_ACCOUNT
+    --name get-uuid \
+    --storage-account $ACCOUNT  --os-type Linux
 ```
 Add Function Code: Save the following code as __init__.py:
 import logging
