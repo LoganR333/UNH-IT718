@@ -12,13 +12,13 @@ AMOUNT=0.01
 ```
 ```
 aws budgets create-budget --account-id $ACCOUNT_ID --budget \
-  '{"BudgetName":$BUDGET_NAME,"BudgetLimit":{"Amount":$AMOUONT,"Unit":"USD"}, \
+  '{"BudgetName":$BUDGET_NAME,"BudgetLimit":{"Amount":$AMOUNT,"Unit":"USD"}, \
   "TimeUnit":"DAILY","BudgetType":"COST","CostFilters":{}, \
   "CostTypes":{"IncludeTax":true,"IncludeSubscription":true,"UseBlended":false}}' \
   --notifications-with-subscribers '[{"Notification": \
   {"NotificationType":"ACTUAL","ComparisonOperator":"GREATER_THAN","Threshold":1.0, \
   "ThresholdType":"PERCENTAGE","NotificationState":"ALARM"},"Subscribers": \
-  [{"SubscriptionType":"EMAIL","Address":"kmh722@unh.edu"}]}]' --dry-run
+  [{"SubscriptionType":"EMAIL","Address":"kmh722@unh.edu"}]}]'
 ```
 
 Provide a screenshot of the command shell interaction in your lab report. FYI: you can review your budgets with:
