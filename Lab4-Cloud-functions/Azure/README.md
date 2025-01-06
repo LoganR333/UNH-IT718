@@ -48,5 +48,5 @@ az functionapp deployment source config-zip \
 ```
 ### Get the URL: Use the following command to retrieve the function’s URL:
 ```
-az functionapp show --name hello-world-webpage --resource-group YOUR_RESOURCE_GROUP --query defaultHostName
+az functionapp show --name return-uuid --resource-group $RESOURCE_GROUP --query defaultHostName
 ```
