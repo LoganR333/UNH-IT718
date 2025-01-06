@@ -31,7 +31,7 @@ az functionapp create \
     --runtime python \
     --runtime-version 3.11 \
     --functions-version 4 \
-    --name get-uuid \
+    --name return-uuid \
     --storage-account $ACCOUNT  --os-type Linux
 ```
 Add Function Code: Save the following code as __init__.py:
