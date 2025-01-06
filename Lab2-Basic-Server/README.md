@@ -11,11 +11,13 @@ For each of the three major cloud vendors (AWS, Azure, and GCP) complete the fol
 - In the real-world, deployments abstract away the cloud provider's API into templates, scripts, CI/CD processes.
 - Deploying a server requires supporting infrastructure:  networking (VPC, subnets), security (keys, security groups) are common examples.
 - The provided scripts assume the basic infrastructure needs to be created.  It is also assumed that you would like to keep the infrastructure created for later labs.
-**BEFORE JUST BLINDLY CUTTING & PASTING:**
-Should you alter the scripts to use existing infrastructure?
-Do you want to keep any created resources?  More meaningful names should be considered.
-Do you know what resources you will pay for?  Leaving unused compute running is a bad idea.
-The scripts in these labs do not clean up after themselves.
+  
+**BEFORE JUST BLINDLY CUTTING & PASTING:**  
+- Should you alter the scripts to use existing infrastructure?
+- Do you want to keep any created resources?  More meaningful names should be considered.
+- Do you know what resources you will pay for?  Leaving unused compute running is a bad idea.
+- The scripts in these labs do not clean up after themselves.
+  
 ## Lab Report
 Provide one or screenshots for each cloud vendor showing:
 1.	The output from the command showing the VM IP addresses.
