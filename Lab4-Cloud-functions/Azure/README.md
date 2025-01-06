@@ -2,7 +2,7 @@
 1.	Review package elements (sample code provided).
 2.	Deploy the function.
 3.	Validate execution.
-4.	
+
 *Note: The function needs to remain available until the lab is graded.*
 
 ### Set up your environment:
@@ -36,11 +36,16 @@ az functionapp create \
 ```
 Add Function Code: Save the following code as __init__.py:
 import logging
-
+### Create functionzip
+```
+cd <project-folder>
+zip -r functionapp.zip .
+```
+### Deploy the code
 ```
 az functionapp deployment source config-zip \
-    --resource-group YOUR_RESOURCE_GROUP \
-    --name hello-world-webpage \
+    --resource-group $RESOURCE_GROUP \
+    --name return-uid \
     --src function.zip
 ```
 ### Get the URL: Use the following command to retrieve the function’s URL:
