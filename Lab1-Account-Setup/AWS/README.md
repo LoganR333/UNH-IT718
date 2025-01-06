@@ -3,16 +3,11 @@
 2.	AWS provides a free tier. No additional credits are available.
 3.	Login to the console. It is HIGHLY RECOMMENDED that you enable MFA.  Provide a screenshot in your lab report showing the console, it should look similar to this:
 [Console](Lab1-AWS-console.png)
-4.	Open a cloudshell and issue the following commands. 
-
-```
-ACCOUNT_ID=your-id
-BUDGET_NAME="your-name"
-AMOUNT=0.01
+4.	Open a cloudshell and issue the following commands. Replacing the values for : <ACCOUNT_ID>, <BUDGET_NAME>, and <AMOUNT>.
 ```
 ```
-aws budgets create-budget --account-id $ACCOUNT_ID --budget \
-  '{"BudgetName":${BUDGET_NAME},"BudgetLimit":{"Amount":${AMOUNT},"Unit":"USD"}, \
+aws budgets create-budget --account-id <ACCOUNT_ID> --budget \
+  '{"BudgetName":<BUDGET_NAME>,"BudgetLimit":{"Amount":<AMOUNT>,"Unit":"USD"}, \
   "TimeUnit":"DAILY","BudgetType":"COST","CostFilters":{}, \
   "CostTypes":{"IncludeTax":true,"IncludeSubscription":true,"UseBlended":false}}' \
   --notifications-with-subscribers '[{"Notification": \
@@ -23,5 +18,5 @@ aws budgets create-budget --account-id $ACCOUNT_ID --budget \
 
 Provide a screenshot of the command shell interaction in your lab report. FYI: you can review your budgets with:
 ```
-aws budgets describe-budget –account **$AWS_ACCOUNT_ID** –budget-name "**name**"
+aws budgets describe-budget –account <ACCOUNT_ID> –budget-name <BUDGET_NAME>
 ```
