@@ -4,6 +4,7 @@
 3.	Login to the console. It is HIGHLY RECOMMENDED that you enable MFA.  Provide a screenshot in your lab report showing the portal dashboard, it should look similar to this:
 
 ![Console](Lab1-Azure-console.png)
+
 4.	Use of the published Azure consumption budget CLI is only for enterprise agreements, and does not support daily budgets.
 5.	In the portal search for budget and create a new budget.  Submit a screenshot of the new budget:
 
