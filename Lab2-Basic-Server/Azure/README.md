@@ -19,7 +19,7 @@ IP_NAME="MyPublicIP"
 NIC_NAME="MyNIC"
 CUSTOM_DATA_FILE="cloud-init-nginx.txt"
 ```
-### Check if SSH key exists
+### Check if SSH key exists (create if not)
 ```
 if [ ! -f "$SSH_KEY_PATH" ]; then
   echo "SSH key not found at $SSH_KEY_PATH. Generating a new one..."
@@ -27,7 +27,7 @@ if [ ! -f "$SSH_KEY_PATH" ]; then
   echo "New SSH key generated."
 fi
 ```
-# Create a resource group
+### Create a resource group
 ```
 az group create --name $RESOURCE_GROUP --location $LOCATION
 ```
