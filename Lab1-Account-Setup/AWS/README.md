@@ -12,7 +12,7 @@ AMOUNT=0.01
 ```
 ```
 aws budgets create-budget --account-id $ACCOUNT_ID --budget \
-  '{"BudgetName":$BUDGET_NAME,"BudgetLimit":{"Amount":$AMOUNT,"Unit":"USD"}, \
+  '{"BudgetName":${BUDGET_NAME},"BudgetLimit":{"Amount":${AMOUNT},"Unit":"USD"}, \
   "TimeUnit":"DAILY","BudgetType":"COST","CostFilters":{}, \
   "CostTypes":{"IncludeTax":true,"IncludeSubscription":true,"UseBlended":false}}' \
   --notifications-with-subscribers '[{"Notification": \
