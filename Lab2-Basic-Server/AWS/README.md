@@ -60,4 +60,4 @@ Delete MyNewKeyPair.pem
 
 # Lab report
 Submit screenshot showing 'wget' retrieving nginx default page and SSH login
-![cloud shell](Lab2-Basic_server.png)
+![cloud shell](Lab2-AWS-cli.png)
