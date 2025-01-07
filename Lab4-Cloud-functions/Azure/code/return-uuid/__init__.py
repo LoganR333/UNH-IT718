@@ -19,7 +19,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         status_code=200,
         mimetype="text/html"
         )
-    response.headers["Set-Cookie"] = f"test-id={generated_uuid}; Domain=azurewebsites.net; Path=/"
+    response.headers["Set-Cookie"] = f"test-id={generated_uuid}; Domain=return-uuid.azurewebsites.net; Path=/"
 
     return response
     
