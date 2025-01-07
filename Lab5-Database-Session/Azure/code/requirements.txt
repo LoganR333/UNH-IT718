@@ -1,1 +1,1 @@
-azure.data.tables
+azure-data-tables
