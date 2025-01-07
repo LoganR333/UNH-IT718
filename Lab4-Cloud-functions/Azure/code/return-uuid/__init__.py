@@ -12,7 +12,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     html_content = f"<h1>Hello, World!</h1><p>Your session UUID: {generated_uuid}</p>"
     
     response = func.HttpResponse(
-        body=json.dumps(html_content),
+        body=html_content,
         status_code=200,
         mimetype="text/html"
         )
