@@ -5,6 +5,8 @@
 
 *Note: functionapp names must be globally unique.  Thus you will need to replace "return-uuid" in the commands below, as well as renaming the "code/return-uuid" folder.*
 
+*Note: As of Jan 6, 2025: "az functionapp" generates "CryptographyDeprecationWarning:" warnings.  This is a known bug and for lab purposes can be ignored.*
+
 ### Set up your environment:
 ```
 ACCOUNT=it718lab4
@@ -33,6 +35,10 @@ az functionapp create \
     --functions-version 4 \
     --name return-uuid \
     --storage-account $ACCOUNT  --os-type Linux
+az functionapp cors add \
+    --name $APP_NAME \
+    --resource-group $RESOURCE_GROUP \
+    --allowed-origins "*"
 ```
 ### Create functionzip
 ```
