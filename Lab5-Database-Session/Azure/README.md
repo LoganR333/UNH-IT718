@@ -18,6 +18,25 @@ az group create --name $RESOURCE_GROUP --location $REGION
 az storage account create --name "$ACCOUNT" --resource-group $RESOURCE_GROUP \
     --location $REGION --sku Standard_LRS
 ```
+### Create Table storage
+```
+az storage table create \
+    --name sessionuuid \
+    --account-name $ACCOUNT
+```
+### Set environment value
+```
+TABLE_CONNECT=`az storage account show-connection-string \
+    --name $ACCOUNT \
+    --resource-group $RESOURCE_GROUP \
+    --query connectionString \
+    --output tsv`
+az functionapp config appsettings set \
+    --name $APP_NAME \
+    --resource-group $RESOURCE_GROUP \
+    --settings "AzureWebJobsStorage=$TABLE_CONNECT"
+```
+
 ### Create cloud function
 ```
 az functionapp create \
@@ -29,8 +48,7 @@ az functionapp create \
     --name $APP_NAME \
     --storage-account $ACCOUNT  --os-type Linux
 ```
-### Create Table storage
-Your code needs to be updated with the connection string.
+
 ```
 ```
 ### Create functionzip
