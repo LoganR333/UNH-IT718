@@ -14,14 +14,14 @@ def get_response():
     generated_uuid = uuid.uuid4()
     
     # Create HTML response
-    html_content = f"""
+    html_content = { "message": f"""
         <h1>Hello, World!</h1>
         <p>Your session UUID: {generated_uuid}</p>
-    """
+    """ }
     logging.info('got past content')
     
     response = func.HttpResponse(
-        body=html_content,
+        body=json.dumps(html_content),
         status_code=200,
         mimetype="html/text"
         }
