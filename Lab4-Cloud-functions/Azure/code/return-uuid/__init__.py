@@ -24,7 +24,7 @@ def get_response():
         body=json.dumps(html_content),
         status_code=200,
         mimetype="html/text"
-        }
+        )
     response.headers["Set-Cookie"] = f"test-id={generated_uuid}; Path=/"
 
     return response
