@@ -6,19 +6,10 @@ import azure.functions as func
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
-    return get_response()
-
-def get_response():
-    # Generate a UUID
-    
     generated_uuid = uuid.uuid4()
     
     # Create HTML response
-    html_content = f"""
-        <h1>Hello, World!</h1>
-        <p>Your session UUID: {generated_uuid}</p>
-    """
-    logging.info('got past content')
+    html_content = f"<h1>Hello, World!</h1><p>Your session UUID: {generated_uuid}</p>"
     
     response = func.HttpResponse(
         body=json.dumps(html_content),
