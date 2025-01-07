@@ -1,7 +1,9 @@
-# Azure												
+# Azure: Cloud Functions												
 1.	Review package elements (sample code provided).
 2.	Deploy the function.
 3.	Validate execution.
+
+*Note: functionapp names must be globally unique.  Thus you will need to replace "return-uuid" in the commands below, as well as renaming the "code/return-uuid" folder.*
 
 ### Set up your environment:
 ```
