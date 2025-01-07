@@ -3,8 +3,6 @@
 2.	Deploy the function.
 3.	Validate execution.
 
-*Note: The function needs to remain available until the lab is graded.*
-
 ### Set up your environment:
 ```
 ACCOUNT=it718lab4
@@ -46,7 +44,13 @@ az functionapp deployment source config-zip \
     --name return-uuid \
     --src functionapp.zip
 ```
-### Get the URL: Use the following command to retrieve the function’s URL:
-```
-az functionapp show --name return-uuid --resource-group $RESOURCE_GROUP --query defaultHostName
-```
+# Lab report
+
+*Note: The function needs to remain available until the lab is graded.*
+
+The functionapp URL is https://<your-function-name>azurewebsitea.net/api/<your-function-name>?
+
+Show screenshots of using wget from the cloud sheel and a browser fetch.
+![cloudshell](Lab4-Azure-cli.png)
+![browser](Lab4-Azure-browser.png)
+
