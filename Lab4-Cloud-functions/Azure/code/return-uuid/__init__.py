@@ -1,3 +1,5 @@
+import json
+import uuid
 import logging
 import azure.functions as func
 
