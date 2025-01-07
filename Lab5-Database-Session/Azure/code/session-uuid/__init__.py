@@ -1,5 +1,6 @@
 import logging
 import azure.functions as func
+from azure.data.tables import TableServiceClient
 
 import uuid
 import os
