@@ -15,20 +15,17 @@ def get_response():
     
     # Create HTML response
     html_content = f"""
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Welcome</title>
-    </head>
-    <body>
         <h1>Hello, World!</h1>
         <p>Your session UUID: {generated_uuid}</p>
-    </body>
-    </html>
     """
     logging.info('got past content')
     
-    response = func.HttpResponse(html_content)
+    response = func.HttpResponse(
+        body=html_content,
+        status_code=200,
+        mimetype="html/text"
+        }
+        html_content)
     response.headers["Set-Cookie"] = f"test-id={generated_uuid}; Path=/"
 
     return response
