@@ -4,23 +4,11 @@ from azure.data.tables import TableServiceClient
 import uuid
 import os
 
-# Environment variables
-STORAGE_CONNECTION_STRING = os.getenv("AzureWebJobsStorage")
-TABLE_NAME = "SessionKeys"
-
-# Initialize Table Service Client
-table_service_client = TableServiceClient.from_connection_string(STORAGE_CONNECTION_STRING)
-table_client = table_service_client.get_table_client(TABLE_NAME)
-
-def create_table_if_not_exists():
-    try:
-        table_client.create_table()
-    except Exception as e:
-        logging.info(f"Table already exists: {e}")
-
 def main(req: func.HttpRequest) -> func.HttpResponse:
+    return func.HttpResponse("test",status_code=200)
     create_table_if_not_exists()  # Ensure the table exists
 
+    
     try:
         # Parse request
         path = req.route_params.get("path", "")
