@@ -14,16 +14,16 @@ def get_response():
     generated_uuid = uuid.uuid4()
     
     # Create HTML response
-    html_content = { "message": f"""
+    html_content = f"""
         <h1>Hello, World!</h1>
         <p>Your session UUID: {generated_uuid}</p>
-    """ }
+    """
     logging.info('got past content')
     
     response = func.HttpResponse(
         body=json.dumps(html_content),
         status_code=200,
-        mimetype="html/text"
+        mimetype="text/html"
         )
     response.headers["Set-Cookie"] = f"test-id={generated_uuid}; Path=/"
 
