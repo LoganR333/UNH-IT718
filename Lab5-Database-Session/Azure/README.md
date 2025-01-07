@@ -48,9 +48,6 @@ az functionapp create \
     --name $APP_NAME \
     --storage-account $ACCOUNT  --os-type Linux
 ```
-
-```
-```
 ### Create functionzip
 ```
 cd code
