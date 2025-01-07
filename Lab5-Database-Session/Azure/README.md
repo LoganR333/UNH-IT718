@@ -5,6 +5,8 @@
 
 *Note: functionapp names must be globally unique.  Thus you will need to replace "session-uuid" in the commands below, as well as renaming the "code/session-uuid" folder.*
 
+*Note: As of Jan 6, 2025: "az functionapp" generates "CryptographyDeprecationWarning:" warnings.  This is a known bug and for lab purposes can be ignored.*
+
 ### Set up your environment:
 ```
 ACCOUNT=it718lab4
@@ -24,7 +26,7 @@ az storage table create \
     --name sessionuuid \
     --account-name $ACCOUNT
 ```
-### Set environment value
+### Set environment values
 ```
 TABLE_CONNECT=`az storage account show-connection-string \
     --name $ACCOUNT \
@@ -35,6 +37,10 @@ az functionapp config appsettings set \
     --name $APP_NAME \
     --resource-group $RESOURCE_GROUP \
     --settings "AzureWebJobsStorage=$TABLE_CONNECT"
+az functionapp cors add \
+    --name $APP_NAME \
+    --resource-group $RESOURCE_GROUP \
+    --allowed-origins "*"
 ```
 
 ### Create cloud function
