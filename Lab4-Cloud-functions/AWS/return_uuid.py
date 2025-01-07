@@ -33,9 +33,6 @@ def get_response():
         "statusCode": 200,
         "headers": {
             "Content-Type": "text/html",
-            "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
-            "Pragma": "no-cache",
-            "Expires": "0",
             "Set-Cookie": f"test-id={generated_uuid}; Path=/; HttpOnly"
         },
         "body": html_content
