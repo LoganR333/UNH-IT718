@@ -3,13 +3,6 @@ import uuid
 from google.cloud import firestore
 import functions_framework
 
-import firebase_admin
-from firebase_admin import credentials, firestore
-
-# Initialize the Firebase Admin SDK
-cred = credentials.ApplicationDefault()
-firebase_admin.initialize_app(cred)
-
 db = firestore.Client()
 
 @functions_framework.http
