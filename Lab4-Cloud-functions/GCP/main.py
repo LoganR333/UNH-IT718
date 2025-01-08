@@ -45,7 +45,6 @@ def handle_new(email):
     </html>
     """
     response = html_response(response_content)
-    response.headers['"Content-Type'] = f"text/html"
     response.headers['Set-Cookie'] = f"uuid={new_uuid}; Path=/; HttpOnly"
     return response 
     
