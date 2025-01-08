@@ -3,6 +3,7 @@
 2.	Deploy the function.
 3.	Validate execution.
 
+gcloud config set project $PROJECT
 
 gcloud functions deploy hello-world-webpage \
     --runtime python39 \
