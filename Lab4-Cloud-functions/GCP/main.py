@@ -62,11 +62,19 @@ def handle_get(email, uuid):
 
         # Compare the UUID in the cookie with the stored UUID
         stored_uuid = doc.to_dict().get('uuid')
-        if stored_uuid == uuid:
-            return {"statusCode": 200, "body": json.dumps({"message": "UUID matches"})}
-        else:
-            return {"statusCode": 403, "body": json.dumps({"message": "UUID does not match"})}
-
+        response_content = f"""
+        <html>
+        <body>
+            <h1>UUID check<h1>
+            <p>stored uuid: {stored_uuid}</p>
+            <p>request uuid: {uuid}</p>
+        </body>
+        </html>
+        """
+        response = html_response(response_content)
+        response.headers['Set-Cookie'] = f"uuid={new_uuid}; Path=/; HttpOnly"
+        return response
+        
     except Exception as e:
         return f"Error retrieving data: {str(e)}", 500
 
