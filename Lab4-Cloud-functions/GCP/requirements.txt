@@ -1,3 +1,2 @@
 google-cloud-firestore
 functions_framework
-firebase-admin
