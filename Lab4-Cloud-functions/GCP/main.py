@@ -84,6 +84,10 @@ def handle_get(email, cookie):
     except Exception as e:
         return f"Error retrieving data: {str(e)}", 500
 
+def html_response(content, status=200):
+    from flask import Response
+    return Response(response=content, status=status, mimetype="text/html")
+    
 if __name__ == "__main__":
     # Explicitly bind to the port specified by the environment variable PORT (default: 8080)
     port = int(os.environ.get('PORT', 8080))
