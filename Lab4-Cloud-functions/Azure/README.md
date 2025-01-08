@@ -3,9 +3,11 @@
 2.	Deploy the function.
 3.	Validate execution.
 
-*Note: functionapp names must be globally unique.  Thus you will need to replace "return-uuid" in the commands below, as well as renaming the "code/return-uuid" folder.*
+> [!NOTE]
+> functionapp names must be globally unique.  Thus you will need to replace "return-uuid" in the commands below, as well as renaming the "code/return-uuid" folder.  
 
-*Note: As of Jan 6, 2025: "az functionapp" generates "CryptographyDeprecationWarning:" warnings.  This is a known bug and for lab purposes can be ignored.*
+> [!WARNING]
+> As of Jan 6, 2025: "az functionapp" generates "CryptographyDeprecationWarning:" warnings.  This is a known bug and for lab purposes can be ignored.
 
 ### Set up your environment:
 ```
@@ -52,13 +54,13 @@ az functionapp deployment source config-zip \
     --name return-uuid \
     --src functionapp.zip
 ```
-# Lab report
+## Lab report
 
-*Note: The function needs to remain available until the lab is graded.*
+> [!NOTE] The function needs to remain available until the lab is graded.*
 
 The functionapp URL is https://<your-function-name>azurewebsitea.net/api/<your-function-name>?
 
-Show screenshots of using wget from the cloud sheel and a browser fetch.
+Show screenshots of using wget from the cloud sheel and a browser fetch.  
 ![cloudshell](Lab4-Azure-cli.png)
 ![browser](Lab4-Azure-browser.png)
 
