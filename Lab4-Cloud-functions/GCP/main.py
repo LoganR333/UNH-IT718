@@ -38,7 +38,7 @@ def handle_new(email):
     response = {
         "statusCode": 200,
         "headers": {
-            "Content-Type": "text/xml",
+            "Content-Type": "text/html",
             "Set-Cookie": f"uuid={new_uuid}; Path=/; HttpOnly"
         },
         "body": json.dumps({"message": "Record created", "uuid": new_uuid})
