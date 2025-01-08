@@ -56,11 +56,10 @@ def handle_get(email, uuid):
     try:
         # Retrieve the record from Firestore
         doc_ref = db.collection('return-uuid').document(email)
-        logging.info("DOC_REF="+str(doc_ref))
         doc = doc_ref.get()
 
         if not doc.exists:
-            return "Record not found.", 404
+            return f"Record not found.{doc_ref}", 404
 
         # Compare the UUID in the cookie with the stored UUID
         stored_uuid = doc.to_dict().get('uuid')
