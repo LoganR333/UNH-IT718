@@ -35,7 +35,20 @@ def handle_new(email):
     except Exception as e:
         return f"Error storing data: {str(e)}", 500
 
-    # Set the UUID as a cookie
+    response_content = f"""
+    <html>
+    <body>
+        <h1>Record Created</h1>
+        <p>Email: {email}</p>
+        <p>UUID: {new_uuid}</p>
+    </body>
+    </html>
+    """
+    response = html_response(response_content)
+    response.headers['"Content-Type'] = f"text/html"
+    response.headers['Set-Cookie'] = f"uuid={new_uuid}; Path=/; HttpOnly"
+    return response 
+    
     response = {
         "statusCode": 200,
         "headers": {
