@@ -63,9 +63,9 @@ def handle_get(email, cookie):
         stored_uuid = doc.to_dict().get('uuid')
         headers = {'Content-Type': 'text/xml'}
         if stored_uuid == cookie:
-            return {"statusCode": 200, "body": json.dumps({"message": "UUID matches"}), headers}
+            return {"statusCode": 200, "body": json.dumps({"message": "UUID matches"}), "headers": headers}
         else:
-            return {"statusCode": 403, "body": json.dumps({"message": "UUID does not match"}), headers}
+            return {"statusCode": 403, "body": json.dumps({"message": "UUID does not match"}), "headers": headers}
 
     except Exception as e:
         return f"Error retrieving data: {str(e)}", 500
