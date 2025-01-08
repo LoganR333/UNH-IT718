@@ -72,7 +72,7 @@ def handle_get(email, uuid):
         </html>
         """
         response = html_response(response_content)
-        response.headers['Set-Cookie'] = f"uuid={new_uuid}; Path=/; HttpOnly"
+        response.headers['Set-Cookie'] = f"uuid={uuid}; Path=/; HttpOnly"
         return response
         
     except Exception as e:
