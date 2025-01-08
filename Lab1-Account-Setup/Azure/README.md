@@ -5,8 +5,11 @@
 
 ![Console](Lab1-Azure-console.png)
 
-4.	Use of the published Azure consumption budget CLI is only for enterprise agreements, and does not support daily budgets.
-5.	In the portal search for budget and create a new budget.  Submit a screenshot of the new budget:
+> [!NOTE]
+> Use of the published Azure consumption budget CLI is only for enterprise agreements, and does not support daily budgets.
+
+# Lab Report
+In the portal search for budget and create a new budget.  Submit a screenshot of the new budget:
 
 ![Budget](Lab1-Azure-budget.png)
 
