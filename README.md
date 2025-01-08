@@ -9,7 +9,7 @@ The course has 8 labs, materials for each lab has a dedicated folder.  Lab cover
 ### Lab order
 | # | Name | AWS | Azure | GCP |  
 | :---: | :--- | :---: | :---: | :---: |  
-| 1 | Signup, CLI, and setting budgets | [x] | [x] | [x] |  
+| 1 | Signup, CLI, and setting budgets | :white-check-mark: | :heavy-check-mark: | [x] |  
 | 2 | Basic Compute | [x] | [x] | [x] |  
 | 3 | Static Web Site | [x] | [x] | [x] |  
 | 4 | Cloud Functions | [x] | [x] | [x] |  
