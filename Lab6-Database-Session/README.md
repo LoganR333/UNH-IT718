@@ -1,1 +1,14 @@
-$ TODO
+# Databse Session
+
+> {!NOTE}
+> This lab only needs to be completed using AWS.
+
+You will deploy an AWS Lambda function written in python (code provided).
+The function takea two http get requests:
+- <url>/new?email=testmail.com
+- <url>/get?email=testmail.com&uuid=uuid-value.
+
+/new generates, stores, and returns as a cookie a uuid.  Multiple calls to /new will update the uuid value.
+/get validates the UUID against the stored value.
+
+The ?mail query parameter value is *NOT* checked for validity.  We will leave that for the next lab.
