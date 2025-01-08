@@ -19,7 +19,7 @@ For each of the three major cloud vendors (AWS, Azure, and GCP) complete the fol
 - The scripts in these labs do not clean up after themselves.
   
 ## Lab Report
-Provide one or screenshots for each cloud vendor showing:
+Provide one or more screenshots for each cloud vendor showing:
 1.	The output from the command showing the VM IP addresses.
 2.	wget/curl command retrieving the nginx default page,
 3.	Successful SSH login.
