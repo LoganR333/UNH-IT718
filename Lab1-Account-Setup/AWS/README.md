@@ -17,7 +17,8 @@ aws budgets create-budget --account-id <ACCOUNT_ID> --budget \
   [{"SubscriptionType":"EMAIL","Address":"kmh722@unh.edu"}]}]'
 ```
 
-Provide a screenshot of the command shell interaction in your lab report. FYI: you can review your budgets with:
+# Lab Report
+Provide a screenshot of the command shell interaction. FYI: you can review your budgets with:
 ```
 aws budgets describe-budget –account <ACCOUNT_ID> –budget-name <BUDGET_NAME>
 ```
