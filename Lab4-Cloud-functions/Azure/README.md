@@ -61,7 +61,7 @@ az functionapp deployment source config-zip \
 
 The functionapp URL is https://<your-function-name>azurewebsitea.net/api/<your-function-name>?
 
-Show screenshots of using wget from the cloud sheel and a browser fetch.  
+Show screenshots of using wget from the cloud shell and a browser fetch.  
 ![cloudshell](Lab4-Azure-cli.png)
 ![browser](Lab4-Azure-browser.png)
 
