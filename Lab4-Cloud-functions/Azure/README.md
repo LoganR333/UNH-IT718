@@ -56,7 +56,8 @@ az functionapp deployment source config-zip \
 ```
 ## Lab report
 
-> [!NOTE] The function needs to remain available until the lab is graded.*
+> [!NOTE]
+> The function needs to remain available until the lab is graded.
 
 The functionapp URL is https://<your-function-name>azurewebsitea.net/api/<your-function-name>?
 
