@@ -1,4 +1,3 @@
 google-cloud-firestore
 functions_framework
 flask
-logging
