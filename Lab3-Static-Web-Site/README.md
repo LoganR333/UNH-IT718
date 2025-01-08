@@ -8,7 +8,7 @@ For each of the three major cloud vendors (AWS, Azure, and GCP) complete the fol
 > [!NOTE]
 > Running the standalone dedicated nginx server you created in the last lab is generally a bad idea.
 
-Standalone servers have maintenance, monitoring, and run-time costs create unnecessary overhead for a static public website.  
+Standalone servers have maintenance, monitoring, and run-time costs that create unnecessary overhead for a static public website.  
 
 Even if your website does more than simple GETs, offloading the static content (html, css, javascript, images) to cloud based CDN services will offer better performance, availability, and reduced cost.  
 
