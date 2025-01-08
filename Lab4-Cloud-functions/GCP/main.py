@@ -1,5 +1,6 @@
 import json
 import uuid
+import logging
 from google.cloud import firestore
 import functions_framework
 
