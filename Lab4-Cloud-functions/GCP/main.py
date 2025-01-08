@@ -18,9 +18,8 @@ def handler(request):
     if path == '/new':
         return handle_new(email)
     elif path == '/get':
-        cookie = request.cookies.get('uuid')
-        ret = handle_get(email, cookie)
-        return( ret.body, ret.statusCode, ret.headers )
+        uuid = request.cookies.get('uuid')
+        return handle_get(email, uuid)
     else:
         return "Invalid path. Use /new or /get.", 404
 
@@ -47,22 +46,11 @@ def handle_new(email):
     response = html_response(response_content)
     response.headers['Set-Cookie'] = f"uuid={new_uuid}; Path=/; HttpOnly"
     return response 
-    
-    response = {
-        "statusCode": 200,
-        "headers": {
-            "Content-Type": "text/html",
-            "Set-Cookie": f"uuid={new_uuid}; Path=/; HttpOnly"
-        },
-        "body": json.dumps({"message": "Record created", "uuid": new_uuid})
-    }
-    return response
 
-
-def handle_get(email, cookie):
+def handle_get(email, uuid):
     """Handles the /get path by comparing the cookie value with the stored UUID."""
-    if not cookie:
-        return "Missing 'uuid' cookie.", 400
+    if not uuid:
+        return "Missing 'uuid' query parameter.", 400
 
     try:
         # Retrieve the record from Firestore
@@ -74,11 +62,10 @@ def handle_get(email, cookie):
 
         # Compare the UUID in the cookie with the stored UUID
         stored_uuid = doc.to_dict().get('uuid')
-        headers = {'Content-Type': 'text/xml'}
         if stored_uuid == cookie:
-            return {"statusCode": 200, "body": json.dumps({"message": "UUID matches"}), "headers": headers}
+            return {"statusCode": 200, "body": json.dumps({"message": "UUID matches"})}
         else:
-            return {"statusCode": 403, "body": json.dumps({"message": "UUID does not match"}), "headers": headers}
+            return {"statusCode": 403, "body": json.dumps({"message": "UUID does not match"})}
 
     except Exception as e:
         return f"Error retrieving data: {str(e)}", 500
