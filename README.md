@@ -2,7 +2,7 @@
 
 ## Labs
 
-The course has 8 labs, materials for each lab has a dedicated folder in this repo.
+The course has 8 labs, materials for each lab has a dedicated folder in this repo.  
 Labs can be completed using the relevant cloud shell in: AWS, Azure, and GCP.
 
 | # | Name | AWS | Azure | GCP |  
