@@ -58,11 +58,11 @@ def handle_get(email, uuid):
         doc = doc_ref.get()
 
         if not doc.exists:
-            return f"Record not found.{str(doc_ref)}", 404
+            return "Record not found.", 404
 
         # Compare the UUID in the cookie with the stored UUID
         stored_uuid = doc.to_dict().get('uuid')
-        if stored_uuid == cookie:
+        if stored_uuid == uuid:
             return {"statusCode": 200, "body": json.dumps({"message": "UUID matches"})}
         else:
             return {"statusCode": 403, "body": json.dumps({"message": "UUID does not match"})}
