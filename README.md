@@ -7,7 +7,7 @@
 
 The course has 8 labs, materials for each lab has a dedicated folder.  Lab cover AWS, Azure, and GCP.
 ### Lab order
-| # | | Name | AWS | Azure | GCP |  
+| # | Name | AWS | Azure | GCP |  
 | :---: | :--- | :---: | :---: | :---: |  
 | 1 | Signup, CLI, and setting budgets | [x] | [x] | [x] |  
 | 2 | Basic Compute | [x] | [x] | [x] |  
