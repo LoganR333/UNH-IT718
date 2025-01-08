@@ -1,4 +1,4 @@
-# Databse Session
+# Database Session
 
 > [!NOTE]
 > This lab only needs to be completed using AWS.
