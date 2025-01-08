@@ -1,6 +1,5 @@
 import json
 import uuid
-import logging
 from google.cloud import firestore
 import functions_framework
 
@@ -59,7 +58,7 @@ def handle_get(email, uuid):
         doc = doc_ref.get()
 
         if not doc.exists:
-            return f"Record not found.{doc_ref}", 404
+            return f"Record not found.{str(doc_ref)}", 404
 
         # Compare the UUID in the cookie with the stored UUID
         stored_uuid = doc.to_dict().get('uuid')
