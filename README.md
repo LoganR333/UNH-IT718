@@ -1,12 +1,10 @@
 # UNH IT718 - Cloud Computing Principles
 
-## Labs and other courseware
+## Labs
 
-> [!NOTE]
-> This repo is rapidly evolving
+The course has 8 labs, materials for each lab has a dedicated folder in this repo.
+Labs can be completed using the relevant cloud shell in: AWS, Azure, and GCP.
 
-The course has 8 labs, materials for each lab has a dedicated folder.  Lab cover AWS, Azure, and GCP.
-### Lab order
 | # | Name | AWS | Azure | GCP |  
 | :---: | :--- | :---: | :---: | :---: |  
 | 1 | Signup, CLI, and setting budgets | ✅ | ✅ |  ✅ |  
@@ -17,4 +15,8 @@ The course has 8 labs, materials for each lab has a dedicated folder.  Lab cover
 | 6 | Database |  ✅ |  |   |    
 | 7 | Identity (OIDC) |  ✅ | |  |  
 | 8 | Kubernetes |  | |  ✅ |   
+
+#  Other courseware
+> [!NOTE]
+> This repo is rapidly evolving with support materials TBD.
 
