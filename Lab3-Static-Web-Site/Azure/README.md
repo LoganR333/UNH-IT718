@@ -47,6 +47,7 @@ az storage account show \
     --query "primaryEndpoints.web" \
     --output tsv
 ```
-### Sample screenshots
+# Lab Report
+Sample screenshots
 ![CLI screen capture](lab3-azure-cli.png)
 ![Website home page](lab3-azure-website.png)
