@@ -38,6 +38,7 @@ def handle_new(email):
     response = {
         "statusCode": 200,
         "headers": {
+            "Content-Type": "text/xml",
             "Set-Cookie": f"uuid={new_uuid}; Path=/; HttpOnly"
         },
         "body": json.dumps({"message": "Record created", "uuid": new_uuid})
@@ -60,10 +61,11 @@ def handle_get(email, cookie):
 
         # Compare the UUID in the cookie with the stored UUID
         stored_uuid = doc.to_dict().get('uuid')
+        headers = {'Content-Type': 'text/xml'}
         if stored_uuid == cookie:
-            return {"statusCode": 200, "body": json.dumps({"message": "UUID matches"})}
+            return {"statusCode": 200, "body": json.dumps({"message": "UUID matches"}), headers}
         else:
-            return {"statusCode": 403, "body": json.dumps({"message": "UUID does not match"})}
+            return {"statusCode": 403, "body": json.dumps({"message": "UUID does not match"}), headers}
 
     except Exception as e:
         return f"Error retrieving data: {str(e)}", 500
