@@ -56,4 +56,3 @@ aws lambda get-function-url-config --function-name Lab6-session --query "Functio
 The sample screenshot below shows adding a new user (twice to generate a new and old uuid).  Then testing both the new and old uuid.
 
 ![CLI screen capture](Lab6-AWS-cli.png)
-![CLI screen capture](Lab6-AWS-browser.png)
