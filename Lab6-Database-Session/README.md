@@ -1,6 +1,6 @@
 # Databse Session
 
-> {!NOTE}
+> [!NOTE]
 > This lab only needs to be completed using AWS.
 
 You will deploy an AWS Lambda function written in python (code provided).
