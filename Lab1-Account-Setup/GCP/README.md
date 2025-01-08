@@ -12,5 +12,6 @@ gcloud billing budgets create --billing-account=$BILLING_ACCOUNT_ID \
  --display-name=$BUDGET_NAME --budget-amount=0.01USD --threshold-rule=percent=1.0 \
  --threshold-rule=percent=1.0,basis=forecasted-spend
 ```
-Provide a screenshot of the command shell interaction in your lab report.  
+# Lab report
+In addition to the console screenshot, provide a screenshot of the command shell interaction in your lab report.  
 ![Budget](Lab1-GCP-budget.png)
