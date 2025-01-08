@@ -5,8 +5,10 @@ For each of the three major cloud vendors (AWS, Azure, and GCP) complete the fol
 2.	Push the web content to cloud storage.
 3.	Make the cloud storage publicly available.
 
-__Comments about this lab__
-Running the standalone dedicated nginx server you created in the last lab is generally a bad idea.  The maintenance, monitoring, and run-time costs create unnecessary overhead for a static public website.  
+> [!NOTE]
+> Running the standalone dedicated nginx server you created in the last lab is generally a bad idea.
+
+Standalone servers have maintenance, monitoring, and run-time costs create unnecessary overhead for a static public website.  
 
 Even if your website does more than simple GETs, offloading the static content (html, css, javascript, images) to cloud based CDN services will offer better performance, availability, and reduced cost.  
 
@@ -19,10 +21,9 @@ __Highly recommended but optional:__
 Use a custom DNS domain (friendly URL) for your site.  All 3 vendors charge $0.50/month to host a DNS zone.  AWS and GCP can act as your DNS registrar for ~$12.year.  Yes, I know sites like <your-name>.github.io are free.  But, being able to talk and show that you understand the entire CI/CD process are great talking points during a hiring interview.  
 
 
-__Note:__
-In the later Github lab you will automatically push content from a github repo eliminating the need for using a cloud shell to push content by hand.  
-## Lab Report
-
+> [!NOTE]
+> In the later Github lab you will automatically push content from a github repo eliminating the need for using a cloud shell to push content by hand.  
+# Lab Report
 For each cloud vendor show:
 1.	The output from the cloud shell showing a wget command retrieving the default page.
 2.	Screenshot of browser rendering your home page.
