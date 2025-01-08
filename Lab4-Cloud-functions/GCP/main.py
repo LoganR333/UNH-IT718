@@ -19,7 +19,8 @@ def handler(request):
         return handle_new(email)
     elif path == '/get':
         cookie = request.cookies.get('uuid')
-        return handle_get(email, cookie)
+        ret = handle_get(email, cookie)
+        return( ret.body, ret.statusCode, ret.headers )
     else:
         return "Invalid path. Use /new or /get.", 404
 
