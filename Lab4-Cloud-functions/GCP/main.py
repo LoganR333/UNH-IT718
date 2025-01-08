@@ -55,6 +55,7 @@ def handle_get(email, uuid):
     try:
         # Retrieve the record from Firestore
         doc_ref = db.collection('return-uuid').document(email)
+        logging.info("DOC_REF="+str(doc_ref))
         doc = doc_ref.get()
 
         if not doc.exists:
