@@ -3,18 +3,13 @@ import uuid
 from google.cloud import firestore
 import functions_framework
 
-const admin = require('firebase-admin');
-const databaseId = 'ruturn-uuid';
+import firebase_admin
+from firebase_admin import credentials, firestore
 
-admin.initializeApp({
-  credential: admin.credential.applicationDefault(),
-  databaseURL: `https://${process.env.GCLOUD_PROJECT}.firebaseio.com`,
-  projectId: process.env.GCLOUD_PROJECT,
-  // Specify the dedicated database ID
-  firestore: { databaseId: databaseId }
-});
+# Initialize the Firebase Admin SDK
+cred = credentials.ApplicationDefault()
+firebase_admin.initialize_app(cred)
 
-const firestore = admin.firestore();# Initialize Firestore client
 db = firestore.Client()
 
 @functions_framework.http
