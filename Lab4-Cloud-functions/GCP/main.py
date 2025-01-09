@@ -18,7 +18,8 @@ def handler(request):
     if path == '/new':
         return handle_new(email)
     elif path == '/get':
-        uuid = request.cookies.get('uuid')
+        # fix to cookie? uuid = request.cookies.get('uuid')
+        uuid = request.args.get('uuid')
         return handle_get(email, uuid)
     else:
         return "Invalid path. Use /new or /get.", 404
@@ -65,7 +66,7 @@ def handle_get(email, uuid):
         response_content = f"""
         <html>
         <body>
-            <h1>UUID check<h1>
+            <h1>UUID check</h1>
             <p>stored uuid: {stored_uuid}</p>
             <p>request uuid: {uuid}</p>
         </body>
