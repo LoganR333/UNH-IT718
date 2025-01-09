@@ -3,14 +3,30 @@
 2.	Deploy the function.
 3.	Validate execution.
 
-gcloud config set project $PROJECT
-
-gcloud functions deploy hello-world-webpage \
-    --runtime python39 \
+### Setup environment
+```
+PROJECT_ID="kengraf-com"  # Replace with your GCP project ID
+REGION=us-east1
+APP_NAME=return-uuid
+gcloud config set project $PROJECT_ID
+gcloud services enable cloudfunctions.googleapis.com
+gcloud services enable cloudbuild.googleapis.com
+```
+### Create firestore database
+```
+gcloud firestore databases create --location=$REGION
+```
+### Deploy clod function
+```
+gcloud functions deploy $APP_NAME \
+    --region $REGION --gen2 \
+    --runtime python312 \
     --trigger-http \
-    --allow-unauthenticated \
-    --entry-point hello_world \
-    --region us-central1
+    --source . \
+    --entry-point=handler \
+    --allow-unauthenticated
+```
+gcloud functions describe $APP_NAME --format="get(url)" --region $REGION
 
 ## Lab report
 > [!NOTE]
