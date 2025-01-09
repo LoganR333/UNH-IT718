@@ -9,15 +9,15 @@ In Lab 3 you created a sample website with the content hosted by cloud storage. 
 
 ### Ingredients needed for this lab
 -  A public Github reporitory
-   - more
-   - more again
--  Website content hosted in cloud storage (Reuse Lab 2 steps)
--
-- 
+   - Basic README.md and index.html files
+   - Add the instructor as a collaborator (username: kengraf) [How to allow collaborators](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository)
+-  Website content hosted in cloud storage
+   - Reuse Lab 2 steps to create
 
-[How to allow collaborators](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository)
 
 ## Lab Report
 - URL for your Github repo
 - URL for your website
  
+> [!IMPORTANT]
+> The Gitbug repo and the website can be taken down after grading
