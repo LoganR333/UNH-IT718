@@ -20,4 +20,4 @@ In Lab 3 you created a sample website with the content hosted by cloud storage. 
 - URL for your website
  
 > [!IMPORTANT]
-> The Github repo and the website can be taken down after grading
+> The Github repo and the website need to remain available until after grading.
