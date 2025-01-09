@@ -7,7 +7,7 @@ In Lab 3 you created a sample website with the content hosted by cloud storage. 
 > [!IMPORTANT]
 > Instructions are provided for AWS, Azure, GCP.  Pick only one for your lab report.
 
-### Ingredents needed for this lab
+### Ingredients needed for this lab
 -  A public Github reporitory
    o more
    o more again
