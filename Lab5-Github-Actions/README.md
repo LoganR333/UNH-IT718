@@ -12,7 +12,7 @@ In Lab 3 you created a sample website with the content hosted by cloud storage. 
    - Basic README.md and index.html files
    - Add the instructor as a collaborator (username: kengraf) [How to allow collaborators](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository)
 -  Website content hosted in cloud storage
-   - Reuse Lab 2 steps to create
+   - Reuse Lab3 steps to create
 
 
 ## Lab Report
