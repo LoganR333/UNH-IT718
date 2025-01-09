@@ -1,4 +1,3 @@
----code----
 name: Deploy to GCP Cloud Storage
 
 on:
