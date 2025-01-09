@@ -1,0 +1,42 @@
+name: Push to Azure Storage
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  upload_to_azure_storage:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v1
+
+    - name: Set up Azure CLI
+      uses: azure/CLI@v2
+      with:
+        azcliversion: latest
+        inlineScript: |
+          az version
+
+    - name: Initialize Azure CLI
+      uses: azure/CLI@v2
+      with:
+        azcliversion: latest
+        inlineScript: az cloud set --name AzureCloud
+
+    - name: Upload files to Azure Storage
+      env:
+        AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+        AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+      uses: azure/CLI@v2
+      with:
+        azcliversion: latest
+        inlineScript: |
+          az storage blob upload-batch \
+            --account-name $AZURE_STORAGE_ACCOUNT \
+            --account-key $AZURE_STORAGE_KEY \
+            --destination \$web \
+            --source . \
+            --pattern "*"
