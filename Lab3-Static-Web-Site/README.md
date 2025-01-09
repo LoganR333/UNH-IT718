@@ -23,7 +23,7 @@ Use a custom DNS domain (friendly URL) for your site.  All 3 vendors charge $0.5
 
 > [!NOTE]
 > In the later Github lab you will automatically push content from a github repo eliminating the need for using a cloud shell to push content by hand.  
-# Lab Report
+## Lab Report
 For each cloud vendor show:
 1.	The output from the cloud shell showing a wget command retrieving the default page.
 2.	Screenshot of browser rendering your home page.
