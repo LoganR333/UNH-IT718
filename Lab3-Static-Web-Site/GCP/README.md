@@ -38,7 +38,7 @@ gcloud storage buckets update gs://$YOUR_BUCKET_NAME \
 ```
 wget http://$YOUR_BUCKET_NAME.storage.googleapis.com/index.html
 ```
-# Lab Report
+## Lab Report
 Sample screenshots
 ![CLI screen capture](lab3-gcp-cli.png)
 ![Website home page](lab3-gcp-website.png)
