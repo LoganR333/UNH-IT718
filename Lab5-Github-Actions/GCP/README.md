@@ -32,11 +32,11 @@ Add the following secrets to your GitHub repository
 - GCP_SERVICE_ACCOUNT_KEY (base64).
 
 ### Create a basic index.html
-> {!WARNING]
+> [!WARNING]
 > I will edited this file during grading
 
 ### Deploy repo workflow
-Replace the YOUR_BUCKET_NAME in gcp.yaml, then copy the result to .github/workflows/gcp.yaml
+Replace the YOUR_BUCKET_NAME in `gcp.yaml`, then copy the result to `.github/workflows/gcp.yaml`
 
 ### If successful
 You will see under the actios tab a workflow run.
