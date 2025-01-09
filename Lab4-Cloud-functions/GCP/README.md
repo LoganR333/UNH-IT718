@@ -16,7 +16,7 @@ gcloud services enable cloudbuild.googleapis.com
 ```
 gcloud firestore databases create --location=$REGION
 ```
-### Deploy clod function
+### Deploy cloud function
 ```
 gcloud functions deploy $APP_NAME \
     --region $REGION --gen2 \
@@ -26,13 +26,15 @@ gcloud functions deploy $APP_NAME \
     --entry-point=handler \
     --allow-unauthenticated
 ```
+### Retrieve URL
+```
 gcloud functions describe $APP_NAME --format="get(url)" --region $REGION
-
+```
 ## Lab report
 > [!NOTE]
 > The function needs to remain available until the lab is graded.
 
-The URL is https://REGION-PROJECT_ID.cloudfunctions.net/hello-world-webpage  
+The URL is: https://$REGION-$PROJECT_ID.cloudfunctions.net/$APP_NAME
 
 Show screenshots of using wget from the cloud shell and a browser fetch.  
 ![cloudshell](Lab4-GCP-cli.png)
