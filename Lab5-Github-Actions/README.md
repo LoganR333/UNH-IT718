@@ -9,8 +9,8 @@ In Lab 3 you created a sample website with the content hosted by cloud storage. 
 
 ### Ingredients needed for this lab
 -  A public Github reporitory
-   o more
-   o more again
+   - more
+   - more again
 -  Website content hosted in cloud storage (Reuse Lab 2 steps)
 -
 - 
