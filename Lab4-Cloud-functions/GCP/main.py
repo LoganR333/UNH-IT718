@@ -12,6 +12,9 @@ def handler(request):
     path = request.path
     email = request.args.get('email')
 
+    if path == '/':
+        return handle_uuid()
+    
     if not email:
         return "Missing 'email' parameter.", 400
 
@@ -24,6 +27,19 @@ def handler(request):
     else:
         return "Invalid path. Use /new or /get.", 404
 
+
+def handle_uuid():
+    new_uuid = str(uuid.uuid4())
+
+    response_content = f"""
+    <html>
+    <body>
+        <p>UUID: {new_uuid}</p>
+    </body>
+    </html>
+    """
+    response = html_response(response_content)
+    return response 
 
 def handle_new(email):
     """Handles the /new path by storing email and UUID in Firestore."""
