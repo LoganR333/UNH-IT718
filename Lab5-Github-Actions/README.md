@@ -1,11 +1,11 @@
 # Lab5 Github Actions
 In Lab 3 you created a sample website with the content hosted by cloud storage.  In this lab you create a simple CI/CD pipeline to automate pushing content. 
 
-> {!TIP]
-> While it is possible to manage data amd directly interact with cloud storage, most CI/CD pipelines leverage repositories and other tools to control content.  
+> [!TIP]
+> While it is possible to manage data and directly interact with cloud storage, most CI/CD pipelines leverage repositories and other tools to control content.  
 
 > [!IMPORTANT]
-> Instructions are provided for AWS, Azure, GCP.  Pick only one for your lab report.
+> Instructions are provided for AWS, Azure, and GCP.  Pick only one for your lab report.
 
 ### Ingredients needed for this lab
 -  A public Github reporitory
@@ -20,4 +20,4 @@ In Lab 3 you created a sample website with the content hosted by cloud storage. 
 - URL for your website
  
 > [!IMPORTANT]
-> The Gitbug repo and the website can be taken down after grading
+> The Github repo and the website can be taken down after grading
