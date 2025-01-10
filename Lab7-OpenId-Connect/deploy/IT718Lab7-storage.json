@@ -9,13 +9,12 @@
       "DeployName" : {
         "Description" : "Prefix name for created resources",
         "Type" : "String"
+      },
+      "Environment": {
+        "Type": "String",
+        "Description": "Environment name (e.g., dev, prod).",
+        "Default": "dev"
       }
-    },
-    "Environment": {
-      "Type": "String",
-      "Description": "Environment name (e.g., dev, prod).",
-      "Default": "dev"
-    }
   },
   "Resources": {
     "S3Bucket": {
