@@ -2,6 +2,15 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "CloudFormation template to create an S3 bucket and a CloudFront distribution.",
   "Parameters": {
+      "S3Random" : {
+        "Description" : "Postfix name for created resources",
+        "Type" : "String"
+      },
+      "DeployName" : {
+        "Description" : "Prefix name for created resources",
+        "Type" : "String"
+      }
+    },
     "Environment": {
       "Type": "String",
       "Description": "Environment name (e.g., dev, prod).",
