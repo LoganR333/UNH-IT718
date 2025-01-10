@@ -1,19 +1,19 @@
 # OpenID Connect (OIDC)
 Using the lessons learned in the previous labs, build out a complete serverless application.
 
-### Components: IoC via CloudFront (CF)
-| CF Deploy | Function | Purpose | Notes |  
+### Components
+| CF* | Function | Purpose | Notes |  
 | :---: | :--- | :---: | :--- | 
-| ❌ | Github | Source (App &IoC) | Clone locally for modification |
+| ❌ | Github | Source (App &IoC) | Clone locally for modification
 | ❌ | Google | OIDC provider | Generate client secret; set scopes
-| ❌ | CloudFormation | IoC | Need to set custom values |
-| ✅ | S3 Bucket | Static web content & Lambda packages | Globally unique; user defined name | 
-| ✅ | CloudFront | CDN for static pages | |
-| ✅ | Lambda | OIDC callback and session creation | |
-| ✅ | DynamoDB | Storage of session UUID | |
-| ✅ | API GatewayV2 | Control access to Lambda functions | |
-| ✅ | Route53 | Porvide friendly URL | Optional: reuiqres domain oownership |
-
+| ❌ | CloudFormation | IoC | Need to set custom values
+| ✅ | S3 Bucket | Static web content & Lambda packages | Globally unique; user defined name 
+| ✅ | CloudFront | CDN for static pages | 
+| ✅ | Lambda | OIDC callback and session creation | 
+| ✅ | DynamoDB | Storage of session UUID | 
+| ✅ | API GatewayV2 | Control access to Lambda functions 
+| ✅ | Route53 | Porvide friendly URL | Optional: reuiqres domain oownership 
+CF*: IoC deployment based on CloudFront
 
 Add a login based on Google ID to the previous Database session lab
 
