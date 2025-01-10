@@ -2,8 +2,8 @@
 
 ### Set environment
 ```
-ACCOUNT=it718lab5
-RESOURCE_GROUP=it718lab5
+ACCOUNT=YOUR_ACCOUNT
+RESOURCE_GROUP=YOUR_RESOURCE_GROUP
 ```
 
 ### Retrieve Storage Key
@@ -13,6 +13,8 @@ az storage account keys list --resource-group $RESOURCE_GROUP --account-name $AC
 
 ### Store Secrets:
 Add the following secrets to your GitHub repository
+- AZURE_CLIENT_ID
+- AZURE_CLIENT_SECRET
 - AZURE_STORAGE_ACCOUNT
 - AZURE_STORAGE_KEY
 - AZURE_CONTAINER_NAME 
