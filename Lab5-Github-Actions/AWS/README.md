@@ -2,9 +2,9 @@
 
 ### Set environment
 ```
-SERVICE_ACCOUNT_NAME=it718lab5
-PROJECCT_ID=unh-it718
-KEY_FILE_NAME=service_key
+SERVICE_ACCOUNT_NAME=YOUR_ACCOUNT
+PROJECCT_ID=YOUR_PROJECT
+KEY_FILE_NAME=YOUR_KEY_FILE
 ```
 ### Create service account
 ```
