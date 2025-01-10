@@ -38,7 +38,7 @@ __URIs:__
 - Ports matter:  http://localhost and http://localhost:8080 are not the same.
 
 You can click on the more info button (upper right) to see your client id and secret.
-![console capture](iamges/gcp-console.png)
+![console capture](images/gcp-console.png)
 ### CloudFormation
 
 
