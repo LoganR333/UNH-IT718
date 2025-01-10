@@ -1,11 +1,11 @@
 [
   {
     "ParameterKey": "DeployName",
-    "ParameterValue": "nadialin"
+    "ParameterValue": "IT718Lab7"
   },
   {
     "ParameterKey": "DomainName",
-    "ParameterValue": "nadialin.cyber-unh.org"
+    "ParameterValue": "IT718Lab7.kengraf.com"
   },
   {
     "ParameterKey": "S3bucketName",
