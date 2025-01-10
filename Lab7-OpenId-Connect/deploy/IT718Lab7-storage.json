@@ -1,0 +1,109 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template to create an S3 bucket and a CloudFront distribution.",
+  "Parameters": {
+    "Environment": {
+      "Type": "String",
+      "Description": "Environment name (e.g., dev, prod).",
+      "Default": "dev"
+    }
+  },
+  "Resources": {
+    "S3Bucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": {
+          "Fn::Sub": "my-app-${Environment}"
+        },
+        "AccessControl": "PublicRead",
+        "WebsiteConfiguration": {
+          "IndexDocument": "index.html",
+          "ErrorDocument": "error.html"
+        }
+      }
+    },
+    "BucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "S3Bucket"
+        },
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "s3:GetObject",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:aws:s3:::",
+                    {
+                      "Ref": "S3Bucket"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "CloudFrontDistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Origins": [
+            {
+              "Id": {
+                "Fn::Sub": "S3Origin-${S3Bucket}"
+              },
+              "DomainName": {
+                "Fn::GetAtt": ["S3Bucket", "RegionalDomainName"]
+              },
+              "S3OriginConfig": {}
+            }
+          ],
+          "Enabled": true,
+          "DefaultCacheBehavior": {
+            "TargetOriginId": {
+              "Fn::Sub": "S3Origin-${S3Bucket}"
+            },
+            "ViewerProtocolPolicy": "redirect-to-https",
+            "AllowedMethods": ["GET", "HEAD"],
+            "CachedMethods": ["GET", "HEAD"],
+            "ForwardedValues": {
+              "QueryString": false,
+              "Cookies": {
+                "Forward": "none"
+              }
+            },
+            "DefaultTTL": 86400,
+            "MinTTL": 0,
+            "MaxTTL": 31536000
+          },
+          "ViewerCertificate": {
+            "CloudFrontDefaultCertificate": true
+          }
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "S3BucketName": {
+      "Description": "Name of the S3 bucket",
+      "Value": {
+        "Ref": "S3Bucket"
+      }
+    },
+    "CloudFrontDomainName": {
+      "Description": "Domain name of the CloudFront distribution",
+      "Value": {
+        "Fn::GetAtt": ["CloudFrontDistribution", "DomainName"]
+      }
+    }
+  }
+}
