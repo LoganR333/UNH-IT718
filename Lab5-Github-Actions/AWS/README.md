@@ -14,6 +14,6 @@ Add the following secrets to your GitHub repository
 Replace the YOUR_BUCKET_NAME in `aws.yaml`, then copy the result to `.github/workflows/aws.yaml`
 
 ### If successful
-You will see under the actios tab a workflow run.
+You will see under the actions tab a workflow run.
 Your storage based website will show your index.html edits.
 
