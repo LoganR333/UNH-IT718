@@ -24,7 +24,7 @@ Add the following secrets to your GitHub repository
 > I will edited this file during grading
 
 ### Deploy repo workflow
-Replace the YOUR_BUCKET_NAME in `azure.yaml`, then copy the result to `.github/workflows/azure.yaml`
+Replace any customizations in `azure.yaml`, then copy the result to `.github/workflows/azure.yaml`
 
 ### If successful
 You will see under the actios tab a workflow run.
