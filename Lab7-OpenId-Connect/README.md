@@ -5,10 +5,10 @@ Using the lessons learned in the previous labs, build out a complete serverless 
 - Forces a login based on Google ID. (/index.html redirects to /login.html) 
 - The OIDC JWT is sent as a POST callback to /verify_token.
 - The callback is handled by a lambda function:
-  - Generated a UUID
+  - Generates a UUID
   - Stores the UUIC and OIDC provided email in DynamoDB
   - Redirects back to /index.html
-- Index.html displays: OIDC JWT contents, email, and UUID values.
+- /index.html displays: OIDC JWT contents, email, and UUID values.
 
 ### Components
 | CF* | Function | Purpose | Notes |  
