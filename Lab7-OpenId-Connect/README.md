@@ -13,6 +13,7 @@ Using the lessons learned in the previous labs, build out a complete serverless 
 | ✅ | DynamoDB | Storage of session UUID | 
 | ✅ | API GatewayV2 | Control access to Lambda functions 
 | ✅ | Route53 | Porvide friendly URL | Optional: reuiqres domain oownership 
+| :---: | :--- | :---: | :--- | 
 CF*: IoC deployment based on CloudFront
 
 Add a login based on Google ID to the previous Database session lab
