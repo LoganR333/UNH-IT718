@@ -1,0 +1,129 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "CloudFormation template to deploy a Python Lambda function with API Gateway v2 and DynamoDB.",
+  "Resources": {
+    "LambdaExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": ["lambda.amazonaws.com"]
+              },
+              "Action": ["sts:AssumeRole"]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "IT718Lab7LambdaExecution",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": "arn:aws:logs:*:*:*"
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "dynamodb:PutItem",
+                    "dynamodb:GetItem",
+                    "dynamodb:Scan",
+                    "dynamodb:Query"
+                  ],
+                  "Resource": { "Fn::GetAtt": ["DynamoDBTable", "Arn"] }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "DynamoDBTable": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "IT718Lab5SessionTable",
+        "AttributeDefinitions": [
+          { "AttributeName": "email", "AttributeType": "S" }
+        ],
+        "KeySchema": [
+          { "AttributeName": "email", "KeyType": "HASH" }
+        ],
+        "BillingMode": "PAY_PER_REQUEST"
+      }
+    },
+    "PythonLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "FunctionName": "IT718Lab7VerifyToken",
+        "Handler": "app.lambda_handler",
+        "Runtime": "python3.12",
+        "Role": { "Fn::GetAtt": ["LambdaExecutionRole", "Arn"] },
+        "Code": {
+          "S3Bucket": "<your-s3-bucket-name>",
+          "S3Key": "<path-to-your-zip-file>"
+        },
+        "MemorySize": 128,
+        "Timeout": 15,
+        "Environment": {
+          "Variables": { "TABLE_NAME": { "Ref": "DynamoDBTable" } }
+        }
+      }
+    },
+    "HttpApi": {
+      "Type": "AWS::ApiGatewayV2::Api",
+      "Properties": {
+        "Name": "IT718Lab7VerifyToken",
+        "ProtocolType": "HTTP",
+        "Target": { "Fn::GetAtt": ["PythonLambdaFunction", "Arn"] }
+      }
+    },
+    "LambdaIntegration": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": { "Ref": "HttpApi" },
+        "IntegrationType": "AWS_PROXY",
+        "IntegrationUri": { "Fn::GetAtt": ["PythonLambdaFunction", "Arn"] },
+        "PayloadFormatVersion": "2.0"
+      }
+    },
+    "HttpApiRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": { "Ref": "HttpApi" },
+        "RouteKey": "POST /verifyToken",
+        "Target": {
+          "Fn::Sub": "integrations/${LambdaIntegration}"
+        }
+      }
+    },
+    "LambdaInvokePermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": { "Ref": "PythonLambdaFunction" },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Sub": "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${HttpApi}/*"
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ApiEndpoint": {
+      "Description": "HTTP API Endpoint URL",
+      "Value": {
+        "Fn::Sub": "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com"
+      }
+    }
+  }
+}
