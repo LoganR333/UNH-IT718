@@ -130,7 +130,7 @@
       }
     }
   },
-  "Outputs",":", {
+  "Outputs": {
     "ApiEndpoint": {
       "Description": "HTTP API Endpoint URL",
       "Value": {
