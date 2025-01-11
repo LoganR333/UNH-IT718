@@ -24,8 +24,7 @@
     "S3Bucket": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
-        "BucketName" : {"Ref": "S3bucketName" } 
-        },
+        "BucketName" : {"Ref": "S3bucketName" },
         "AccessControl": "PublicRead",
         "WebsiteConfiguration": {
           "IndexDocument": "index.html",
