@@ -1,6 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "CloudFormation template to create an S3 bucket and a CloudFront distribution.",
+  "Description": "CloudFormation template to create an public website enabled S3 bucket.",
   "Parameters": {
       "S3bucketName" : {
         "Description" : "Postfix name for created resources",
@@ -13,11 +13,6 @@
       "DomainName" : {
         "Description" : "Optional for friendly urls",
         "Type" : "String"
-      },
-      "Environment": {
-        "Type": "String",
-        "Description": "Environment name (e.g., dev, prod).",
-        "Default": "dev"
       }
   },
   "Resources": {
@@ -73,48 +68,17 @@
           ]
         }
       }
-    },
-    "CloudFrontDistribution": {
-      "Type": "AWS::CloudFront::Distribution",
-      "Properties": {
-        "DistributionConfig": {
-          "Origins": [
-            {
-              "Id": {
-                "Fn::Sub": "S3Origin-${S3Bucket}"
-              },
-              "DomainName": {
-                "Fn::GetAtt": ["S3Bucket", "RegionalDomainName"]
-              },
-              "S3OriginConfig": {}
-            }
-          ],
-          "Enabled": true,
-          "DefaultCacheBehavior": {
-            "TargetOriginId": {
-              "Fn::Sub": "S3Origin-${S3Bucket}"
-            },
-            "ViewerProtocolPolicy": "redirect-to-https",
-            "AllowedMethods": ["GET", "HEAD"],
-            "CachedMethods": ["GET", "HEAD"],
-            "ForwardedValues": {
-              "QueryString": false,
-              "Cookies": {
-                "Forward": "none"
-              }
-            },
-            "DefaultTTL": 86400,
-            "MinTTL": 0,
-            "MaxTTL": 31536000
-          },
-          "ViewerCertificate": {
-            "CloudFrontDefaultCertificate": true
-          }
-        }
-      }
     }
   },
   "Outputs": {
+    "S3BucketDomainName" : {
+      "Value" :  { "Fn::GetAtt": ["S3bucket", "DomainName"] },
+      "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "s3bucket", "DomainName" ]]}}
+    },
+    "S3BucketURL" : {
+      "Value": {"Fn::GetAtt": ["S3bucket", "WebsiteURL"]},
+      "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "s3bucket", "URL" ]]}}
+    },
     "S3BucketName": {
       "Description": "Name of the S3 bucket",
       "Value": {
@@ -125,12 +89,6 @@
       "Description": "Regional name of the S3 bucket",
       "Value": {
         "Ref": "S3Bucket"
-      }
-    },
-    "CloudFrontDomainName": {
-      "Description": "Domain name of the CloudFront distribution",
-      "Value": {
-        "Fn::GetAtt": ["CloudFrontDistribution", "DomainName"]
       }
     }
   }
