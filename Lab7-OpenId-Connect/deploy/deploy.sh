@@ -18,7 +18,7 @@ echo "Creating stack... $STACK_NAME"
 # This appoach is allow students to alter steps as needed
 
 STACK_NAME="$STACK_NAME-storage"
-aws cloudformation create-stack --stack-name ${STACK_NAME} --template-body file://${STACK_NAME}.json --parameters file://parameters.json --tags file://tags.json --output text
+aws cloudformation create-stack --stack-name ${STACK_NAME} --template-body file://${STACK_NAME}-storage.json --parameters file://parameters.json --tags file://tags.json --output text
 echo "Waiting on ${STACK_NAME} create completion..."
 aws cloudformation wait stack-create-complete --stack-name ${STACK_NAME}
 aws cloudformation describe-stacks --stack-name ${STACK_NAME} | jq .Stacks[0].Outputs
