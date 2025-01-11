@@ -52,7 +52,7 @@ HostedZoneId="Z04154431JUEDZVN0IZ8F"
 #HostedZoneId=""  
 STACK_NAME="$DeployName-distribution"
 aws cloudformation deploy --stack-name ${STACK_NAME} \
-  --template-file file://distributionjson \
+  --template-file file://distribution.json \
   --parameter-overrides \
       HostedZoneId=${HostedZoneId} \
       DomainName=${DomainName} \
