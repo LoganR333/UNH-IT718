@@ -11,7 +11,9 @@ DomainName=$DeployName.kengraf.com
 S3BUCKET=$DeployName  # Needs to be globally unique and lowercase
 
 # Setup resource tagging
-echo "[ { 'Key': 'DeployName','Value': '${DeployName}' } ]" > tags.json
+cat <<EOF >tags.json
+[ { "Key": "DeployName","Value": "${DeployName}" } ]
+EOF
 
 # Ideally the CloudFormation stacks would be combined into one.
 # This appoach is allow students to alter steps as needed
@@ -66,6 +68,6 @@ aws s3 cp function.zip s3://${S3BUCKET}
 cd ..
 
 echo "Uploading website content"
-cd website
+cd ../website
 aws s3 sync . s3://${S3BUCKET}
-cd ..
+cd ../deploy
