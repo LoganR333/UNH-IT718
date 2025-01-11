@@ -68,7 +68,7 @@
   },
   "Outputs": {
     "S3BucketDomainName" : {
-      "Value" :  { "Fn::GetAtt": ["S3bucket", "DomainName"] },
+      "Value" :  { "Fn::GetAtt": ["S3Bucket", "DomainName"] },
       "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "s3bucket", "DomainName" ]]}}
     },
     "S3BucketURL" : {
