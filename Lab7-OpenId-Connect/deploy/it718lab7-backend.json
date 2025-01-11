@@ -5,10 +5,6 @@
       "DeployName" : {
         "Description" : "Prefix name for created resources",
         "Type" : "String"
-      },
-      "DomainName" : {
-        "Description" : "Optional for friendly urls",
-        "Type" : "String"
       }
   },
   "Resources": {
