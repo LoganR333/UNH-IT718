@@ -69,14 +69,3 @@ echo "Uploading website content"
 cd website
 aws s3 sync . s3://${S3BUCKET}
 cd ..
-
-
-aws cloudformation describe-stacks --stack-name ${STACK_NAME} --query "Stacks[*].{StackId: StackId, StackName: StackName}
-
-# Update website config to reflect new resources
-# VAR=$(aws cloudformation list-exports --query "Exports[?contains(Name,'IT718Lab7-ApiEndpoint')].[Value]" --output text)
-# sed -ri "s^(invokeUrl: )('.*')^\1'${VAR}'^i" website/scripts/config.js
-
-# echo "Waiting on ${STACK_NAME} create completion..."
-# aws cloudformation wait stack-create-complete --stack-name ${STACK_NAME}
-# aws cloudformation describe-stacks --stack-name ${STACK_NAME} | jq .Stacks[0].Outputs
