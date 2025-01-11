@@ -24,8 +24,7 @@
     "S3Bucket": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
-        "BucketName": {
-          "Fn::Sub": "my-app-${Environment}"
+        "BucketName" : {"Ref": "S3bucketName" }, 
         },
         "AccessControl": "PublicRead",
         "WebsiteConfiguration": {
