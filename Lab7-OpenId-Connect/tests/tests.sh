@@ -6,3 +6,9 @@ curl -X POST https://<api-endpoint>/trigger \
 curl -X POST https://<api-endpoint>/trigger \
   -H "Content-Type: application/json" \
   -d '{"email": "user@example.com", "action": "read"}'
+
+  {
+  "httpMethod": "POST",
+  "body": "{\"jwt\": \"your-jwt-token-here\"}"
+}
+
