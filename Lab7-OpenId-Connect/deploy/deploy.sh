@@ -26,7 +26,7 @@ EOF
 STACK_NAME="$DeployName-storage"
 echo "Creating stack... $STACK_NAME"
 aws cloudformation deploy --stack-name ${STACK_NAME} \
-  --template-file file://storage.json \
+  --template-file storage.json \
   --capabilities CAPABILITY_NAMED_IAM \
   --parameter-overrides \
       S3bucketName=${S3BUCKET} \
