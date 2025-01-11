@@ -22,27 +22,31 @@ aws cloudformation create-stack --stack-name ${STACK_NAME} --template-body file:
 echo "Waiting on ${STACK_NAME} create completion..."
 aws cloudformation wait stack-create-complete --stack-name ${STACK_NAME}
 aws cloudformation describe-stacks --stack-name ${STACK_NAME} | jq .Stacks[0].Outputs
-exit
 
-# Package and upload the lambda function
+echo "Packaging and uploading the lambda function"
 cd lambda
 zip function.zip verifyToken.py
 aws s3 cp function.zip s3://${S3BUCKET}/function.zip
 cd ..
 
-
-# upload website
+echo "Uploading website content"
 cd website
 aws s3 sync . s3://IT718Lab7
-cd ../deploy
-aws cloudformation create-stack --stack-name IT718Lab7-lambda --template-body file://lambdaStack.json --capabilities CAPABILITY_NAMED_IAM --parameters file://parameters.json --tags file://tags.json --output text
+cd ..
 
-aws cloudformation describe-stacks --stack-name "IT718Lab7" --query "Stacks[*].{StackId: StackId, StackName: StackName}
-
-# Update website config to reflect new resources
-VAR=$(aws cloudformation list-exports --query "Exports[?contains(Name,'IT718Lab7-ApiEndpoint')].[Value]" --output text)
-sed -ri "s^(invokeUrl: )('.*')^\1'${VAR}'^i" website/scripts/config.js
-
+echo "Deploying backend components (apigatewayv2, lambda, dynamodb)"
+STACK_NAME="$STACK_NAME-backend"
+aws cloudformation create-stack --stack-name ${STACK_NAME}a --template-body file://${STACK_NAME}.json --capabilities CAPABILITY_NAMED_IAM --parameters file://parameters.json --tags file://tags.json --output text
 echo "Waiting on ${STACK_NAME} create completion..."
 aws cloudformation wait stack-create-complete --stack-name ${STACK_NAME}
 aws cloudformation describe-stacks --stack-name ${STACK_NAME} | jq .Stacks[0].Outputs
+
+aws cloudformation describe-stacks --stack-name ${STACK_NAME} --query "Stacks[*].{StackId: StackId, StackName: StackName}
+
+# Update website config to reflect new resources
+# VAR=$(aws cloudformation list-exports --query "Exports[?contains(Name,'IT718Lab7-ApiEndpoint')].[Value]" --output text)
+# sed -ri "s^(invokeUrl: )('.*')^\1'${VAR}'^i" website/scripts/config.js
+
+# echo "Waiting on ${STACK_NAME} create completion..."
+# aws cloudformation wait stack-create-complete --stack-name ${STACK_NAME}
+# aws cloudformation describe-stacks --stack-name ${STACK_NAME} | jq .Stacks[0].Outputs
