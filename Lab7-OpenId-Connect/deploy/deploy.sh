@@ -12,7 +12,12 @@ S3BUCKET=$DeployName  # Needs to be globally unique and lowercase
 
 # Setup resource tagging
 cat <<EOF >tags.json
-[ { "Key": "DeployName","Value": "${DeployName}" } ]
+[
+  {
+    "Key": "DeployName",
+    "Value": "${DeployName}"
+  }
+]
 EOF
 
 # Ideally the CloudFormation stacks would be combined into one.
