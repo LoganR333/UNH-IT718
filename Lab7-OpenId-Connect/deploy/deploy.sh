@@ -19,7 +19,7 @@ echo "[ { 'Key': 'DeployName','Value': '${DeployName}' } ]" > tags.json
 STACK_NAME="$DeployName-storage"
 echo "Creating stack... $STACK_NAME"
 aws cloudformation deploy --stack-name ${STACK_NAME} \
-  --template-file file://${STACK_NAME}.json \
+  --template-file file://storage.json \
   --capabilities CAPABILITY_NAMED_IAM \
   --parameter-overrides \
       S3bucketName=${S3BUCKET} \
@@ -32,7 +32,7 @@ aws cloudformation describe-stacks --stack-name ${STACK_NAME} | jq .Stacks[0].Ou
 echo "Deploying backend components (apigatewayv2, lambda, dynamodb)"
 STACK_NAME="$DeployName-backend"
 aws cloudformation deploy --stack-name ${STACK_NAME} \
-  --template-file file://${STACK_NAME}.json \
+  --template-file file://backend.json \
   --capabilities CAPABILITY_NAMED_IAM \
   --parameter-overrides \
       DeployName=${DeployName} \
@@ -50,7 +50,7 @@ HostedZoneId="Z04154431JUEDZVN0IZ8F"
 #HostedZoneId=""  
 STACK_NAME="$DeployName-distribution"
 aws cloudformation deploy --stack-name ${STACK_NAME} \
-  --template-file file://${STACK_NAME}.json \
+  --template-file file://distributionjson \
   --parameter-overrides \
       HostedZoneId=${HostedZoneId} \
       DomainName=${DomainName} \
