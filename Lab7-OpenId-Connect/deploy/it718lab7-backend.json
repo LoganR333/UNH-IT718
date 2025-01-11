@@ -1,6 +1,25 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "CloudFormation template to deploy a Python Lambda function with API Gateway v2 and DynamoDB.",
+  "Parameters": {
+      "S3bucketName" : {
+        "Description" : "Postfix name for created resources",
+        "Type" : "String"
+      },
+      "DeployName" : {
+        "Description" : "Prefix name for created resources",
+        "Type" : "String"
+      },
+      "DomainName" : {
+        "Description" : "Optional for friendly urls",
+        "Type" : "String"
+      },
+      "Environment": {
+        "Type": "String",
+        "Description": "Environment name (e.g., dev, prod).",
+        "Default": "dev"
+      }
+  },
   "Resources": {
     "LambdaExecutionRole": {
       "Type": "AWS::IAM::Role",
@@ -64,9 +83,14 @@
     "PythonLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
-        "FunctionName": "IT718Lab7VerifyToken",
+        "FunctionName": "it718lab7VerifyToken",
         "Handler": "app.lambda_handler",
         "Runtime": "python3.12",
+        "Environment": {
+          "Variables": {
+            "DATABASE_NAME": {"Ref": "DeployName" }
+          }
+        },
         "Role": { "Fn::GetAtt": ["LambdaExecutionRole", "Arn"] },
         "Code": {
           "S3Bucket": "<your-s3-bucket-name>",
