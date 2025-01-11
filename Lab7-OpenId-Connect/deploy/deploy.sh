@@ -10,7 +10,7 @@ fi
 
 S3BUCKET=$STACK_NAME-$(tr -dc a-f0-9 </dev/urandom | head -c 10)
 sed -ri "s/bucket-random/${S3BUCKET}/" parameters.json
-sed -ri "s/IT718Lab7-[0-9a-f]*/${S3BUCKET}/" parameters.json
+sed -ri "s/it718lab7-[0-9a-f]*/${S3BUCKET}/" parameters.json
 
 echo "Creating stack... $STACK_NAME"
 
@@ -18,7 +18,7 @@ echo "Creating stack... $STACK_NAME"
 # This appoach is allow students to alter steps as needed
 
 STACK_NAME="$STACK_NAME-storage"
-aws cloudformation create-stack --stack-name ${STACK_NAME} --template-body file://${STACK_NAME}-storage.json --parameters file://parameters.json --tags file://tags.json --output text
+aws cloudformation create-stack --stack-name ${STACK_NAME} --template-body file://${STACK_NAME}.json --parameters file://parameters.json --tags file://tags.json --output text
 echo "Waiting on ${STACK_NAME} create completion..."
 aws cloudformation wait stack-create-complete --stack-name ${STACK_NAME}
 aws cloudformation describe-stacks --stack-name ${STACK_NAME} | jq .Stacks[0].Outputs
