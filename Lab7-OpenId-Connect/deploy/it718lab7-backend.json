@@ -25,7 +25,7 @@
         },
         "Policies": [
           {
-            "PolicyName": "IT718Lab7LambdaExecution",
+            "PolicyName": "it718lab7LambdaExecution",
             "PolicyDocument": {
               "Version": "2012-10-17",
               "Statement": [
@@ -57,7 +57,7 @@
     "DynamoDBTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
-        "TableName": "IT718Lab5SessionTable",
+        "TableName": "it718lab7SessionTable",
         "AttributeDefinitions": [
           { "AttributeName": "email", "AttributeType": "S" }
         ],
@@ -93,7 +93,7 @@
     "HttpApi": {
       "Type": "AWS::ApiGatewayV2::Api",
       "Properties": {
-        "Name": "IT718Lab7VerifyToken",
+        "Name": "it718lab7VerifyToken",
         "ProtocolType": "HTTP",
         "Target": { "Fn::GetAtt": ["PythonLambdaFunction", "Arn"] }
       }
