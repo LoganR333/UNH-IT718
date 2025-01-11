@@ -13,6 +13,11 @@
     }
   },
   "Parameters": {
+    "DeployName": {
+      "Type": "String",
+      "Description": "Prefix for resources",
+      "Default": "MyApp"
+    },
     "HostedZoneId": {
       "Type": "String",
       "Description": "Route 53 Hosted Zone ID. Leave blank if no Route 53 domain is available.",
@@ -39,14 +44,18 @@
           "Origins": [
             {
               "Id": "S3Origin",
-              "DomainName": {"Fn::ImportValue" : {"Fn::Sub" : "${DeployName}-s3bucket-DomainName"}},
+              "DomainName": {
+                "Fn::ImportValue": { "Fn::Join": ["-", [{ "Ref": "DeployName" }, "s3bucket-DomainName"]] }
+              },
               "CustomOriginConfig": {
                 "OriginProtocolPolicy": "http-only"
               }
             },
             {
               "Id": "ApiOrigin",
-              "DomainName": {"Fn::ImportValue" : {"Fn::Sub" : "${DeployName}-Gateway-DomainName"}},
+              "DomainName": {
+                "Fn::ImportValue": { "Fn::Join": ["-", [{ "Ref": "DeployName" }, "Gateway-DomainName"]] }
+              },
               "OriginPath": "/prod",
               "CustomOriginConfig": {
                 "OriginProtocolPolicy": "https-only"
