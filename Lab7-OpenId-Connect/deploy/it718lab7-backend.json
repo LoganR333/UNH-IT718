@@ -84,8 +84,8 @@
         },
         "Role": { "Fn::GetAtt": ["LambdaExecutionRole", "Arn"] },
         "Code": {
-          "S3Bucket": "<your-s3-bucket-name>",
-          "S3Key": "<path-to-your-zip-file>"
+          "S3Bucket": { "Ref": "S3bucketName" } },
+          "S3Key": "/function.zip"
         },
         "MemorySize": 128,
         "Timeout": 15,
