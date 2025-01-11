@@ -2,10 +2,6 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "CloudFormation template to deploy a Python Lambda function with API Gateway v2 and DynamoDB.",
   "Parameters": {
-      "S3bucketName" : {
-        "Description" : "Postfix name for created resources",
-        "Type" : "String"
-      },
       "DeployName" : {
         "Description" : "Prefix name for created resources",
         "Type" : "String"
@@ -13,11 +9,6 @@
       "DomainName" : {
         "Description" : "Optional for friendly urls",
         "Type" : "String"
-      },
-      "Environment": {
-        "Type": "String",
-        "Description": "Environment name (e.g., dev, prod).",
-        "Default": "dev"
       }
   },
   "Resources": {
