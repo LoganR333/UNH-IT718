@@ -8,12 +8,15 @@ fi
 
 DeployName=$1
 DomainName=$DeployName.kengraf.com
-S3BUCKET=$DeployName  # Needs to be globally unique
+S3BUCKET=$DeployName  # Needs to be globally unique and lowercase
+
+# Setup resource tagging
+echo "[ { 'Key': 'DeployName','Value': '${DeployName}' } ]" > tags.json
 
 # Ideally the CloudFormation stacks would be combined into one.
 # This appoach is allow students to alter steps as needed
 
-STACK_NAME="$STACK_NAME-storage"
+STACK_NAME="$DeployName-storage"
 echo "Creating stack... $STACK_NAME"
 aws cloudformation deploy --stack-name ${STACK_NAME} \
   --template-file file://${STACK_NAME}.json \
@@ -40,8 +43,9 @@ aws cloudformation describe-stacks --stack-name ${STACK_NAME} | jq .Stacks[0].Ou
 
 echo "Deploy a CloudFront distribution"
 CertificateArn="arn:aws:acm:us-east-2:788715698479:certificate/f5a199d0-7175-4992-bc7c-8ed2ad71541b"
-DomainName="it718lab7.kengraf.com"
+DomainName="${DeployName}.kengraf.com"
 HostedZoneId="Z04154431JUEDZVN0IZ8F"
+
 # Uncomment the next line if you do NOT have a Route53 hosted zone, previous settings will be ignored
 #HostedZoneId=""  
 STACK_NAME="$DeployName-distribution"
