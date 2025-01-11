@@ -43,7 +43,7 @@ aws cloudformation deploy --stack-name ${STACK_NAME} \
   --capabilities CAPABILITY_NAMED_IAM \
   --parameter-overrides \
       DeployName=${DeployName} \
-  --tags file://tags.json --output text
+  --output text
 echo "Waiting on ${STACK_NAME} create completion..."
 aws cloudformation wait stack-create-complete --stack-name ${STACK_NAME}
 aws cloudformation describe-stacks --stack-name ${STACK_NAME} | jq .Stacks[0].Outputs
