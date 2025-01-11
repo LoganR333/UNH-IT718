@@ -72,7 +72,7 @@
       "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "s3bucket", "DomainName" ]]}}
     },
     "S3BucketURL" : {
-      "Value": {"Fn::GetAtt": ["S3bucket", "WebsiteURL"]},
+      "Value": {"Fn::GetAtt": ["S3Bucket", "WebsiteURL"]},
       "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "s3bucket", "URL" ]]}}
     },
     "S3BucketName": {
