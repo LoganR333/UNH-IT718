@@ -1,11 +1,11 @@
 [
   {
     "ParameterKey": "DeployName",
-    "ParameterValue": "IT718Lab7"
+    "ParameterValue": "it718lab7"
   },
   {
     "ParameterKey": "DomainName",
-    "ParameterValue": "IT718Lab7.kengraf.com"
+    "ParameterValue": "it718lab7.kengraf.com"
   },
   {
     "ParameterKey": "S3bucketName",
