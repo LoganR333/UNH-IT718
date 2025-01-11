@@ -1,60 +1,52 @@
 import os
 import json
 import boto3
+import uuid
 from botocore.exceptions import ClientError
+from google.oauth2 import id_token
+from google.auth.transport import requests
+
+CLIENT_ID = "958115105182-0rvbal5tufba8jsubammhgq3ee149vdu.apps.googleusercontent.com"
 
 # Initialize DynamoDB client
 dynamodb = boto3.resource('dynamodb')
 table_name = os.environ['TABLE_NAME'] # set by cloudformation
 table = dynamodb.Table(table_name)
 
-def lambda_handler(event, context):
+def handler(event, context):
     try:
-        # Parse the request body
-        body = json.loads(event['body'])
-        email = body.get('email', None)
 
-        if not email or not action:
+        # Parse JSON body
+        body = json.loads(event["body"])
+        token = body.get("idToken")
+        
+        if not token:
             return {
                 "statusCode": 400,
-                "body": json.dumps({"message": "Missing 'email' or 'action' in request body."})
+                "headers": {"Content-Type": "application/json"},
+                "body": json.dumps({"error": "JWT is required"})
             }
+        
+        # Call Google service to validate JWT
+        idinfo = id_token.verify_oauth2_token(token, requests.Request(), CLIENT_ID)
+        sub = idinfo['sub']
+        email = idinfo['email']
+        user_uuid = str(uuid.uuid4())
 
-        if action == "create":
-            # Add a new item to DynamoDB
-            table.put_item(Item={"email": email, "message": "Welcome to DynamoDB!"})
-            return {
-                "statusCode": 200,
-                "body": json.dumps({"message": f"User {email} added to the table."})
-            }
+        # Update the database
+        table.put_item(Item={"email": email, "uuid": user_uuid})
 
-        elif action == "read":
-            # Retrieve an item from DynamoDB
-            response = table.get_item(Key={"email": email})
-            item = response.get('Item', None)
-            if not item:
-                return {
-                    "statusCode": 404,
-                    "body": json.dumps({"message": f"User {email} not found."})
-                }
-            return {
-                "statusCode": 200,
-                "body": json.dumps(item)
-            }
-
-        else:
-            return {
-                "statusCode": 400,
-                "body": json.dumps({"message": "Invalid action. Use 'create' or 'read'."})
-            }
-
-    except ClientError as e:
+        # TODO/FIX the cookie options
         return {
-            "statusCode": 500,
-            "body": json.dumps({"message": "DynamoDB error.", "error": str(e)})
+            "statusCode": 200,
+            "headers": { {"Content-Type": "application/json"},
+                       ("Set-Cookie", "sub="+sub+"; HttpOnly; Secure=false; SameSite=Lax; Path=/" } },
+            "body": json.dumps({"message": "Session created", "uuid": user_uuid})
         }
-    except Exception as e:
-        return {
-            "statusCode": 500,
-            "body": json.dumps({"message": "Internal server error.", "error": str(e)})
-        }
+    
+        except ValueError:
+            # Invalid token
+            self.send_response(401)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({"error": "Invalid JWT"}).encode('utf-8'))
