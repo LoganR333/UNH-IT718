@@ -25,7 +25,7 @@
         },
         "Policies": [
           {
-            "PolicyName": "it718lab7LambdaExecution",
+            "PolicyName":  { "Fn::Join": [ "", [{"Ref": "DeployName"}, "LambdaExecution" ]]},
             "PolicyDocument": {
               "Version": "2012-10-17",
               "Statement": [
@@ -57,7 +57,7 @@
     "DynamoDBTable": {
       "Type": "AWS::DynamoDB::Table",
       "Properties": {
-        "TableName": "it718lab7SessionTable",
+        "TableName": { "Fn::Join": [ "", [{"Ref": "DeployName"}, "SessionTable" ]]},
         "AttributeDefinitions": [
           { "AttributeName": "email", "AttributeType": "S" }
         ],
@@ -70,7 +70,7 @@
     "PythonLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
-        "FunctionName": "it718lab7VerifyToken",
+        "FunctionName": { "Fn::Join": [ "", [{"Ref": "DeployName"}, "VerifyToken" ]]},
         "Handler": "app.lambda_handler",
         "Runtime": "python3.12",
         "Environment": {
@@ -93,7 +93,7 @@
     "HttpApi": {
       "Type": "AWS::ApiGatewayV2::Api",
       "Properties": {
-        "Name": "it718lab7VerifyToken",
+        "Name":  { "Fn::Join": [ "", [{"Ref": "DeployName"}, "VerifyToken" ]]},
         "ProtocolType": "HTTP",
         "Target": { "Fn::GetAtt": ["PythonLambdaFunction", "Arn"] }
       }
