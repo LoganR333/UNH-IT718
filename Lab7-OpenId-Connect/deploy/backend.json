@@ -1,3 +1,4 @@
+[
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "CloudFormation template to deploy a Python Lambda function with API Gateway v2 and DynamoDB.",
@@ -129,7 +130,7 @@
       }
     }
   },
-  "Outputs": {
+  "Outputs",":", {
     "ApiEndpoint": {
       "Description": "HTTP API Endpoint URL",
       "Value": {
@@ -137,4 +138,5 @@
       }
     }
   }
-}
+
+]
