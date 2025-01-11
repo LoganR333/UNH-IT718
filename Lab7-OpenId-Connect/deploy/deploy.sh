@@ -42,6 +42,7 @@ aws cloudformation deploy --stack-name ${STACK_NAME} \
   --template-file backend.json \
   --capabilities CAPABILITY_NAMED_IAM \
   --parameter-overrides \
+      S3bucketName=${S3BUCKET} \
       DeployName=${DeployName} \
   --output text
 echo "Waiting on ${STACK_NAME} create completion..."
