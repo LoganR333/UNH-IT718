@@ -71,6 +71,7 @@ STACK_NAME="$DeployName-distribution"
 aws cloudformation deploy --stack-name ${STACK_NAME} \
   --template-file distribution.json \
   --parameter-overrides \
+      DeployName=${DeployName} \
       HostedZoneId=${HostedZoneId} \
       DomainName=${DomainName} \
       CertificateArn=${CertificateArn} \
