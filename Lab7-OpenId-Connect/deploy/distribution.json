@@ -16,7 +16,7 @@
     "DeployName": {
       "Type": "String",
       "Description": "Prefix for resources",
-      "Default": "MyApp"
+      "Default": ""
     },
     "HostedZoneId": {
       "Type": "String",
