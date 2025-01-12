@@ -12,3 +12,5 @@ curl -X POST https://<api-endpoint>/trigger \
   "body": "{\"jwt\": \"your-jwt-token-here\"}"
 }
 
+# lambda endpoint
+https://it718lab7.s3.us-east-2.amazonaws.com/login.html
