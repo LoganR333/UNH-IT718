@@ -102,7 +102,6 @@
         "Timeout": 15,
         "Environment": {
           "Variables": {
-            "DATABASE_NAME": {"Ref": "DeployName"},
             "TABLE_NAME": {"Ref": "DynamoDBTable"}
           }
         }
