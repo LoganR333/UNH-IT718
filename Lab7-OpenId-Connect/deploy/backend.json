@@ -153,7 +153,7 @@
   },
   "Outputs": {
     "ApiDomainName" : {
-      "Value" :  { "Fn::GetAtt": ["S3Bucket", "DomainName"] },
+      "Value" :  { "Fn::GetAtt": ["HttpApi", "DomainName"] },
       "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "Gateway", "DomainName" ]]}}
     },
     "ApiEndpoint": {
