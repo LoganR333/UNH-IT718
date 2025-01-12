@@ -148,6 +148,32 @@
           "Fn::Sub": "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${HttpApi}/*"
         }
       }
+    },
+    "HttpApiDeployment": {
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": { "Ref": "HttpApi" },
+        "StageName": "dev"
+      },
+      "DependsOn": ["LambdaIntegration"]
+    },
+    "HttpApiStage": {
+      "Type": "AWS::ApiGateway::Stage",
+      "Properties": {
+        "RestApiId": { "Ref": "HttpApi" },
+        "DeploymentId": { "Ref": "ApiDeployment" },
+        "StageName": "prod",
+        "Description": "Production stage",
+        "MethodSettings": [
+          {
+            "ResourcePath": "/*",
+            "HttpMethod": "*",
+            "CachingEnabled": false,
+            "MetricsEnabled": true,
+            "LoggingLevel": "INFO"
+          }
+        ]
+      }
     }
   },
   "Outputs": {
@@ -155,6 +181,11 @@
       "Value" :  { "Fn::GetAtt": ["HttpApi", "DomainName"] },
       "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "Gateway", "DomainName" ]]}},
       "Value": { "Fn::Sub": "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com" }
+    },
+    "ApiGatewayInvokeUrl": {
+      "Description": "Invoke URL for the API Gateway stage",
+      "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "Gateway", "URL" ]]}},
+      "Value": { "Fn::Sub": "https://${MyApiGateway}.execute-api.${AWS::Region}.amazonaws.com/prod" }
     }
   }
 }
