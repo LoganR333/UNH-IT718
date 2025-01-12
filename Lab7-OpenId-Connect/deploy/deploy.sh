@@ -36,6 +36,17 @@ echo "Waiting on ${STACK_NAME} create completion..."
 aws cloudformation wait stack-create-complete --stack-name ${STACK_NAME}
 aws cloudformation describe-stacks --stack-name ${STACK_NAME} | jq .Stacks[0].Outputs
 
+echo "Packaging and uploading the lambda function"
+cd lambda
+zip function.zip verifyToken.py
+aws s3 cp function.zip s3://${S3BUCKET}
+cd ..
+
+echo "Uploading website content"
+cd ../website
+aws s3 sync . s3://${S3BUCKET}
+cd ../deploy
+
 echo "Deploying backend components (apigatewayv2, lambda, dynamodb)"
 STACK_NAME="$DeployName-backend"
 aws cloudformation deploy --stack-name ${STACK_NAME} \
@@ -66,14 +77,3 @@ aws cloudformation deploy --stack-name ${STACK_NAME} \
   --capabilities CAPABILITY_NAMED_IAM
 aws cloudformation wait stack-create-complete --stack-name ${STACK_NAME}
 aws cloudformation describe-stacks --stack-name ${STACK_NAME} | jq .Stacks[0].Outputs
-
-echo "Packaging and uploading the lambda function"
-cd lambda
-zip function.zip verifyToken.py
-aws s3 cp function.zip s3://${S3BUCKET}
-cd ..
-
-echo "Uploading website content"
-cd ../website
-aws s3 sync . s3://${S3BUCKET}
-cd ../deploy
