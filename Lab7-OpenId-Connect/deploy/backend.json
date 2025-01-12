@@ -154,13 +154,8 @@
   "Outputs": {
     "ApiDomainName" : {
       "Value" :  { "Fn::GetAtt": ["HttpApi", "DomainName"] },
-      "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "Gateway", "DomainName" ]]}}
-    },
-    "ApiEndpoint": {
-      "Description": "HTTP API Endpoint URL",
-      "Value": {
-        "Fn::Sub": "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com"
-      }
+      "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "Gateway", "DomainName" ]]}},
+      "Value": { "Fn::Sub": "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com" }
     }
   }
 }
