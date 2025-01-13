@@ -156,16 +156,7 @@
         "ApiId": { "Ref": "HttpApi" },
 	"AutoDeploy": true,
         "StageName": "v1",
-        "Description": "Production stage",
-        "MethodSettings": [
-          {
-            "ResourcePath": "/*",
-            "HttpMethod": "*",
-            "CachingEnabled": false,
-            "MetricsEnabled": true,
-            "LoggingLevel": "INFO"
-          }
-        ]
+        "Description": "Production stage"
       }
     }
   },
