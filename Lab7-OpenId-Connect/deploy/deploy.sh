@@ -10,18 +10,8 @@ DeployName=$1
 DomainName=$DeployName.kengraf.com
 S3BUCKET=$DeployName  # Needs to be globally unique and lowercase
 
-# Setup resource tagging
-cat <<EOF >tags.json
-[
-  {
-    "Key": "DeployName",
-    "Value": "${DeployName}"
-  }
-]
-EOF
-
 # Ideally the CloudFormation stacks would be combined into one.
-# This appoach is allow students to alter steps as needed
+# This appoach allows students to alter steps as needed
 
 STACK_NAME="$DeployName-storage"
 echo "Creating stack... $STACK_NAME"
