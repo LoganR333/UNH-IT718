@@ -168,7 +168,7 @@
     "ApiGatewayInvokeUrl": {
       "Description": "Invoke URL for the API Gateway stage",
       "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "Gateway", "URL" ]]}},
-      "Value": { "Fn::Sub": "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com/prod" }
+      "Value": { "Fn::Sub": "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com/v1" }
     }
   }
 }
