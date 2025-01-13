@@ -155,7 +155,6 @@
       "Properties": {
         "ApiId": { "Ref": "HttpApi" },
         "StageName": "v1",
-	"AutoDeploy": true,
         "Description": "Production stage",
         "MethodSettings": [
           {
