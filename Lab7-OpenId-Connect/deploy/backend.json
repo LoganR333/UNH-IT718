@@ -150,14 +150,7 @@
         }
       }
     },
-    "HttpApiDeployment": {
-      "Type": "AWS::ApiGateway::Deployment",
-      "Properties": {
-        "RestApiId": { "Ref": "HttpApi" },
-        "StageName": "dev"
-      },
-      "DependsOn": ["LambdaIntegration"]
-    },
+
     "HttpApiStage": {
       "Type": "AWS::ApiGateway::Stage",
       "Properties": {
