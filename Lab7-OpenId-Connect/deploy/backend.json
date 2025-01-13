@@ -162,7 +162,7 @@
       "Type": "AWS::ApiGateway::Stage",
       "Properties": {
         "RestApiId": { "Ref": "HttpApi" },
-        "DeploymentId": { "Ref": "ApiDeployment" },
+        "DeploymentId": { "Ref": "HttpApiDeployment" },
         "StageName": "prod",
         "Description": "Production stage",
         "MethodSettings": [
