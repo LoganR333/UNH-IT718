@@ -151,9 +151,10 @@
       }
     },
     "HttpApiStage": {
-      "Type": "AWS::ApiGateway::Stage",
+      "Type": "AWS::ApiGatewayV2::Stage",
       "Properties": {
         "ApiId": { "Ref": "HttpApi" },
+	"AutoDeploy": true,
         "StageName": "v1",
         "Description": "Production stage",
         "MethodSettings": [
