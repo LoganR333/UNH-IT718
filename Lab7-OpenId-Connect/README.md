@@ -31,6 +31,10 @@ Clone this repo to AWS cloud shell or your local machine.
 Optional: Fork this repo to allow for automated workflows and making your work public.
 ### Google
 Follow the Google provided steps to create OAuth 2.0 Client IDs: [LINK](OIDC-connect https://developers.google.com/identity/openid-connect/openid-connect)  
+
+> [!IMPORTANT]
+> You will need to come back and adjust these settings once the CloudFront URLs are known.
+
 __URIs:__
 - The authorized Javascript origin will limit where your client ID/secret can be used.
 - The redirect URL will limit where the callback can be redirect to.
@@ -38,10 +42,7 @@ __URIs:__
 - Ports matter:  http://localhost and http://localhost:8080 are not the same.
 
 > [!IMPORTANT]
-> Edit the lambda function to your client id.
-
-> [!IMPORTANT]
-> You will need to come back and adjust these settings once the CloudFront URLs are known.
+> Edit the lambda function to use your client id.
 
 
 You can click on the more info button (upper right) to see your client id and secret.
