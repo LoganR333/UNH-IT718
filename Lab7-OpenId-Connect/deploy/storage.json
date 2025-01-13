@@ -74,5 +74,6 @@
     "S3BucketWebsiteURL" : {
       "Value": {"Fn::GetAtt": ["S3Bucket", "WebsiteURL"]},
       "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "s3bucket", "URL" ]]}}
-   }
+    }
+  }
 }
