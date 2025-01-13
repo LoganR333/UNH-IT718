@@ -71,21 +71,8 @@
       "Value" :  { "Fn::GetAtt": ["S3Bucket", "DomainName"] },
       "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "s3bucket", "DomainName" ]]}}
     },
-    "S3BucketURL" : {
+    "S3BucketWebsiteURL" : {
       "Value": {"Fn::GetAtt": ["S3Bucket", "WebsiteURL"]},
       "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "s3bucket", "URL" ]]}}
-    },
-    "S3BucketName": {
-      "Description": "Name of the S3 bucket",
-      "Value": {
-        "Fn::GetAtt": ["S3Bucket", "RegionalDomainName"]
-      }
-    },
-    "S3RegionalBucketName": {
-      "Description": "Regional name of the S3 bucket",
-      "Value": {
-        "Ref": "S3Bucket"
-      }
-    }
-  }
+   }
 }
