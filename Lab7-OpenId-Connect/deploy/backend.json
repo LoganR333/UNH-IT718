@@ -161,15 +161,10 @@
     }
   },
   "Outputs": {
-    "ApiDomainName" : {
-      "Value" :  { "Fn::GetAtt": ["HttpApi", "DomainName"] },
-      "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "Gateway", "DomainName" ]]}},
-      "Value": { "Fn::Sub": "https://${HttpApi}.execute-api.${AWS::Region}.amazonaws.com" }
-    },
     "ApiEndpoint": {
-	      "Value": {"Fn::GetAtt": ["HttpApi", "ApiEndpoint"] },
+	"Value": {"Fn::GetAtt": ["HttpApi", "ApiEndpoint"] },
         "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "ApiEndpoint" ]]}}
-	  },
+	},
     "ApiGatewayInvokeUrl": {
       "Description": "Invoke URL for the API Gateway stage",
       "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "Gateway", "URL" ]]}},
