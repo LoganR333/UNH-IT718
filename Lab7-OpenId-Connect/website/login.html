@@ -24,7 +24,7 @@
     const idToken = response.credential;
 
     // Send the token to your backend via POST ---- GET
-    fetch('/verify-token', {
+    fetch('/v1/verify-token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@
   // Render the Google Sign-In button
   window.onload = function () {
     google.accounts.id.initialize({
-      client_id: '958115105182-0rvbal5tufba8jsubammhgq3ee149vdu.apps.googleusercontent.com',
+      client_id: '1030435771551-qnikf54b4jhlbdmm4bkhst0io28u11s4.apps.googleusercontent.com',
       callback: handleCredentialResponse,
     });
     google.accounts.id.renderButton(
