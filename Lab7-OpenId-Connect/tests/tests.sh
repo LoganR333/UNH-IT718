@@ -9,7 +9,7 @@ curl -X POST https://d3obdogsmpp9uy.cloudfront.net/v1/verifyToken \
 
 curl -X POST https://6863p36t83.execute-api.us-east-2.amazonaws.com/v1/verifyToken \
   -H "Content-Type: application/json" \
-  -d '{"jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"}'
+  -d '{"id_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"}'
 
   {
   "httpMethod": "POST",
