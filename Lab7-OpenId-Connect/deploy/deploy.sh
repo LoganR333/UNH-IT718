@@ -28,6 +28,14 @@ aws cloudformation describe-stacks --stack-name ${STACK_NAME} | jq .Stacks[0].Ou
 
 echo "Packaging and uploading the lambda function"
 cd lambda
+if [ ! -e "function.zip" ]; then
+    echo "Add required library to zip."
+    mkdir package
+    pip install --target ./package google-auth
+    cd package/
+    zip -r ../function.zip .
+    cd ..
+fi
 zip function.zip verifyToken.py
 aws s3 cp function.zip s3://${S3BUCKET}
 cd ..
