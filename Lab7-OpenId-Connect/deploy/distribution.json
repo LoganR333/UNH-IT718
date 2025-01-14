@@ -125,7 +125,7 @@
   "Outputs": {
     "CloudFrontURL": {
       "Description": "URL of the CloudFront distribution",
-      "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "CloudFront", "URL" ]]}}
+      "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "CloudFront", "URL" ]]}},
       "Value": { "Fn::Join": [ "", ["https://", { "Fn::GetAtt": ["CloudFrontDistribution", "DomainName"] }]]}
   }
 }
