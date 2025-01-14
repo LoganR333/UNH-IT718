@@ -7,7 +7,7 @@ curl -X POST https://d3obdogsmpp9uy.cloudfront.net/v1/verifyToken \
   -H "Content-Type: application/json" \
   -d '{"email": "user@example.com", "action": "create"}'
 
-curl -X POST https://kvyedg0ezb.execute-api.us-east-2.amazonaws.com/v1/verifyToken \
+curl -X POST https://z63173w8c5.execute-api.us-east-2.amazonaws.com/v1/verifyToken \
   -H "Content-Type: application/json" \
   -d '{"jwt": "your-jwt-token-here"}'
 
