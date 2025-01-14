@@ -32,6 +32,7 @@ if [ ! -e "function.zip" ]; then
     echo "Add required library to zip."
     mkdir package
     pip install --target ./package google-auth
+    pip install --target ./package requests
     cd package/
     zip -r ../function.zip .
     cd ..
