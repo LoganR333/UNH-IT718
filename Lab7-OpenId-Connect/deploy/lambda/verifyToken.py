@@ -43,7 +43,7 @@ def handler(event, context):
             "body": json.dumps({"message": "Session created", "uuid": user_uuid})
         }
     
-   except ValueError:
+    except ValueError:
         # Invalid token
         self.send_response(401)
         self.send_header("Content-Type", "application/json")
