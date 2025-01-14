@@ -54,8 +54,8 @@
             {
               "Id": "ApiOrigin",
               "DomainName": {
-                  "Fn::Select" : [ 1, "Fn::Split" : [ "://", 
-                  "Fn::ImportValue" : {"Fn::Sub" : "${DeployName}-ApiEndpoint"}]] },
+                  "Fn::Select" : [ 1, "Fn::Split", ":", [ "://", 
+                  "Fn::ImportValue", ":", {"Fn::Sub" : "${DeployName}-ApiEndpoint"}]] },
               "OriginPath": "/prod",
               "CustomOriginConfig": {
                 "OriginProtocolPolicy": "https-only"
@@ -127,5 +127,6 @@
       "Description": "URL of the CloudFront distribution",
       "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "CloudFront", "URL" ]]}},
       "Value": { "Fn::Join": [ "", ["https://", { "Fn::GetAtt": ["CloudFrontDistribution", "DomainName"] }]]}
+    }
   }
 }
