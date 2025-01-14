@@ -54,8 +54,8 @@
             {
               "Id": "ApiOrigin",
               "DomainName": {
-                  "Fn::Select" : [ 1, "Fn::Split", ":", [ "://", 
-                  "Fn::ImportValue", ":", {"Fn::Sub" : "${DeployName}-ApiEndpoint"}]] },
+                  "Fn::Select" : [ 1, "Fn::Split" : [ "://", 
+                  "Fn::ImportValue" : {"Fn::Sub" : "${DeployName}-ApiEndpoint"}]] },
               "OriginPath": "/prod",
               "CustomOriginConfig": {
                 "OriginProtocolPolicy": "https-only"
