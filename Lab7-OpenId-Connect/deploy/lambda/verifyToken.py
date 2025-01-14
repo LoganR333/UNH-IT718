@@ -2,6 +2,8 @@ import os
 import json
 import boto3
 import uuid
+from google.oauth2 import id_token
+from google.auth.transport import requests
 
 CLIENT_ID = "958115105182-0rvbal5tufba8jsubammhgq3ee149vdu.apps.googleusercontent.com"
 
