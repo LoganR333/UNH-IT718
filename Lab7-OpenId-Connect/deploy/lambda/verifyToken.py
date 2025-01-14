@@ -13,8 +13,8 @@ table_name = os.environ['TABLE_NAME'] # set by cloudformation
 table = dynamodb.Table(table_name)
 
 def handler(event, context):
+    print(event)
     try:
-
         # Parse JSON body
         body = json.loads(event["body"])
         token = body.get("idToken")
@@ -43,9 +43,10 @@ def handler(event, context):
             "body": json.dumps({"message": "Session created", "uuid": user_uuid})
         }
     
-    except ValueError:
-        # Invalid token
-        self.send_response(401)
-        self.send_header("Content-Type", "application/json")
-        self.end_headers()
-        self.wfile.write(json.dumps({"error": "Invalid JWT"}).encode('utf-8'))
+    except ValueError as e:
+        print(f"Error {e}")
+        return {
+            "statusCode": 401,
+            "headers": { {"Content-Type": "application/json"} },
+            "body": f"Error: {e}"
+        } 
