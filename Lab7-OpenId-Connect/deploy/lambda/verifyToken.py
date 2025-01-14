@@ -2,9 +2,6 @@ import os
 import json
 import boto3
 import uuid
-from botocore.exceptions import ClientError
-from google.oauth2 import id_token
-from google.auth.transport import requests
 
 CLIENT_ID = "958115105182-0rvbal5tufba8jsubammhgq3ee149vdu.apps.googleusercontent.com"
 
@@ -44,9 +41,9 @@ def handler(event, context):
             "body": json.dumps({"message": "Session created", "uuid": user_uuid})
         }
     
-        except ValueError:
-            # Invalid token
-            self.send_response(401)
-            self.send_header("Content-Type", "application/json")
-            self.end_headers()
-            self.wfile.write(json.dumps({"error": "Invalid JWT"}).encode('utf-8'))
+    except ValueError:
+        # Invalid token
+        self.send_response(401)
+        self.send_header("Content-Type", "application/json")
+        self.end_headers()
+        self.wfile.write(json.dumps({"error": "Invalid JWT"}).encode('utf-8'))
