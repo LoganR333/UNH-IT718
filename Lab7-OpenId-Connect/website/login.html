@@ -39,8 +39,8 @@
       })
       .then(data => {
         console.log('Data fetched:', data);
-        const sub = data["sub"]
-        window.location.href = `/dashboard.html?${data}`;
+        const sub = JSON.stringify((data);
+        window.location.href = `/dashboard.html?${sub}`;
       })
       .catch(error => {
         console.error('Error verifying token:', error);
