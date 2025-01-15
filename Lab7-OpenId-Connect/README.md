@@ -17,84 +17,65 @@ Using the lessons learned in the previous labs, build out a complete serverless 
 | ❌ | Google | OIDC provider | Generate client secret; set scopes
 | ❌ | CloudFormation | IoC | Need to set custom values
 | ✅ | S3 Bucket | Static web content & Lambda packages | Globally unique; user defined name 
-| ✅ | CloudFront | CDN for static pages | 
 | ✅ | Lambda | OIDC callback and session creation | 
 | ✅ | DynamoDB | Storage of session UUID | 
 | ✅ | API GatewayV2 | Control access to Lambda functions 
-| ✅ | Route53 | Porvide friendly URL | Optional: reuiqres domain oownership 
+| ✅ | Route53 | Provide friendly URL | Optional: requires domain oownership 
+| ✅ | CloudFront | CDN for static pages and controls access to ApiGatewayV2 | 
 
-CF*: IoC deployment based on CloudFront
+CF*: IoC deployment based on CloudFormation
 
 ## Setup (Github, Google, CloudFormation)
 ### Github
 Clone this repo to AWS cloud shell or your local machine.
 Optional: Fork this repo to allow for automated workflows and making your work public.
 ### Google
-Follow the Google provided steps to create OAuth 2.0 Client IDs: [LINK](OIDC-connect https://developers.google.com/identity/openid-connect/openid-connect)  
+Follow the Google provided steps to create OAuth 2.0 Client IDs: [LINK](https://developers.google.com/identity/openid-connect/openid-connect)  
 
 > [!IMPORTANT]
 > You will need to come back and adjust these settings once the CloudFront URLs are known.
 
 __URIs:__
-- The authorized Javascript origin will limit where your client ID/secret can be used.
-- The redirect URL will limit where the callback can be redirect to.
+- The authorized Javascript origin will limit where your client ID can be used.
+- The redirect URL will limit where the callback can be redirected to.
 - You can have multiple values: (dev, testing, and production)
 - Ports matter:  http://localhost and http://localhost:8080 are not the same.
 
 > [!IMPORTANT]
-> Edit the lambda function to use your client id.
-
+> Edit the lambda function deploy/lambda/verifyToken.py and website/login.html to use your client id.
 
 You can click on the more info button (upper right) to see your client id and secret.
 ![console capture](images/gcp-console.png)
+
+
 ### CloudFormation
+Three (3) CloudFormation templates have been defined.  Storage, Backend, and Distribution.  
+A shell script (deploy.sh) has been provided to deploy each of these stacks.  
+deploy.sh takes one argument.  A prefix name to be used in naming resources.
 
+> [!TIP]
+> Make your prefix name globally unique and lowercase.  This is a S3 limitation.  "it718" is not going to fly.
 
-Prerequisites
-OIDC Provider: Google
-Client ID and Client Secret: Register the application with Google to obtain these credentials.
-Redirect URI: Set a redirect URI (e.g., http://localhost:3000/callback).
+When a stack deployment completes, one or more URLs will be shown.  You can use these URLs to connect to your S3, Lambda, API, etc.  
+Copy the CloudFront URL.  Example: "https://d1mvssppd7zkjp.cloudfront.net"  Go back to the Google Development console and add this as a URI
 
+### S3
+The bucket holds the ./website content and the ./deploy/lambda zip package
 
-client_id from google developer console
-start with localhost, lambda domain
+### Lambda
+verifyToken.py handles the OIDC callback, generates a uuid which is stored in DynamoDB, and returns the Google generated JWT.
 
-### Overview
-CloudFront: Used to cache and serve static files (e.g., HTML, CSS, JavaScript) from an S3 bucket or another origin close to your users for low latency.  
-API Gateway: Used to handle dynamic requests (e.g., POST, GET, PUT) to your backend services or AWS Lambda.
-### Steps
-1. Set Up an S3 Bucket for Static Content (Steps in Lab3)
-2. Create a CloudFront Distribution
-   - Go to the AWS CloudFront console and create a new distribution.
-   - Origin Settings:
-   - Origin domain: Choose your S3 bucket.
-   - Behavior Settings:
-   - Set Default Root Object to index.html.
-   - Set allowed HTTP methods to GET, HEAD, OPTIONS (static content doesn't need POST).
-   - CNAME and SSL: If you have a custom domain, configure the CNAME and attach an SSL certificate using AWS Certificate Manager (ACM).
-3. Set Up API Gateway
-   - Go to the AWS API Gateway console and create a new HTTP API or REST API.
-   - Configure the routes:
-   - Add a POST method (e.g., /submit) for dynamic requests.
-   - Map it to a backend service (e.g., an AWS Lambda function, an HTTP endpoint, or a VPC link).
-   - Deploy the API:
-   - Create a stage (e.g., prod) and deploy the API.
-   - Note the API Gateway endpoint URL.
-4. Integrate Static Content and API
-Example:
-```
-fetch('https://<api-gateway-id>.execute-api.<region>.amazonaws.com/prod/submit', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({ key: 'value' }),
-})
-.then(response => response.json())
-.then(data => console.log(data));
-```
-5. Custom Domain (Optional)
-To serve both static content and API under the same domain:  Use AWS Route 53 to map subdomains or paths:
-Static content: Map static.example.com to the CloudFront distribution for S3.
-API: Map api.example.com to the API Gateway stage.
+### DynamoDB
+Storage of session uuid, repeated calls are handled as overwrites.
 
+### API GatewayV2
+Defines one route /v1/verifyToken.  POST requests that invokes the lambda function.
+
+### Route53 (optional)
+Provides custom (friendly) URL to CloudFront.  If you own a domain this is a easier and more predicitable way to setup Google as a OIDC provider.
+
+### CloudFront
+Used to cache and serve static files (e.g., HTML, CSS, JavaScript) from an S3 bucket to an origin close to your users for low latency.  It also controls access to the API Gateway: for dynamic requests (e.g., POST, GET, PUT) to your backend services or AWS Lambda.
+
+## Lab Report
+Submit to Canvas your login URL.  This is pass/fail based on my login to your site with my Google id.
