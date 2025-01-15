@@ -39,7 +39,7 @@ def handler(event, context):
         return {
             "statusCode": 200,
             "headers": { "Content-Type": "application/json",
-                       "Set-Cookie", "session="+uuid+"; HttpOnly; Secure=true; SameSite=Lax; Path=/" },
+                       "Set-Cookie", "session="+uuid+"; Secure=true; SameSite=Lax; Path=/" },
             "body": json.dumps({"message": "Session created", "idToken": token})
         }
     
