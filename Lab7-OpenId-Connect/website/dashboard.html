@@ -30,6 +30,9 @@ function displayParametersAsHTML() {
   html = '<table><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody>';
 
   urlParams.forEach((value, key) => {
+      if ( key == "idToken" ) {
+        value = JSON.parse(atob(value.split(".")[1]));
+      }
       html += `<tr><td>${key}</td><td>${value}</td></tr>`;
   });
   html += '</tbody></table>';
