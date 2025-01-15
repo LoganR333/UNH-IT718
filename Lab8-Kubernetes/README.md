@@ -4,7 +4,7 @@ This is a collaborative lab and will be completed in-class by the entire class.
 
 The lab will be based on GCP's  "Build a guestbook on Kubernetes engine" tutorial. [Link to demo docs](https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook?hl=en_US)
 
-> [!INFOMATION]
+> [!TIP]
 > This lab uses GKE, and there are costs associated with GKE.  The lab running for classtime will cost a few pennies.  But, if you don't clean up and forget about it costs will accrue.
 
 ### High level steps
