@@ -3,6 +3,10 @@ curl -X POST https://it718lab7.kengraf.com/v1/verifyToken \
   -H "Content-Type: application/json" \
   -d '{"email": "user@example.com", "action": "create"}'
 
+curl -X POST https://woobagooba.kengraf.com/v1/verifyToken2 \
+  -H "Content-Type: application/json" \
+  -d '{"idToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"}'
+
 curl -X POST https://d3obdogsmpp9uy.cloudfront.net/v1/verifyToken \
   -H "Content-Type: application/json" \
   -d '{"idToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"}'
