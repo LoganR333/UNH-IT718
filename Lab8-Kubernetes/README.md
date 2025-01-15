@@ -15,7 +15,7 @@ The lab will be based on GCP's  "Build a guestbook on Kubernetes engine" tutoria
 5. Scale up the web frontend
 
 ## Lab Report
-< [!IMPORTANT]
+> [!IMPORTANT]
 > There is NO submission to Canvas.
 
 You recieve credit for this lab by posting your Name and Guestbook URL to my guestbook, and my successful post to your guestbook.  My guestbook URL will be made available during class.
