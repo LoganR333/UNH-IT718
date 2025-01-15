@@ -33,7 +33,9 @@ function displayParametersAsHTML() {
       if ( key == "idToken" ) {
         const part1b = value.split(".")[1];
         const part1a = atob(part1b);
-        value = part1a;
+        for (const [key, value] of Object.entries(part1a)) {
+          value = `${key}:${value}<br>`; 
+        }
       }
       html += `<tr><td>${key}</td><td>${value}</td></tr>`;
   });
