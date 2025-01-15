@@ -38,8 +38,8 @@ def handler(event, context):
         # TODO/FIX the cookie options
         return {
             "statusCode": 200,
-            "headers": { {"Content-Type": "application/json"},
-                       {"Set-Cookie", "sub="+sub+"; HttpOnly; Secure=false; SameSite=Lax; Path=/" } },
+            "headers": { "Content-Type": "application/json",
+                       "Set-Cookie", "sub="+sub+"; HttpOnly; Secure=false; SameSite=Lax; Path=/" },
             "body": json.dumps({"message": "Session created", "uuid": user_uuid})
         }
     
@@ -47,6 +47,6 @@ def handler(event, context):
         print(f"Error {e}")
         return {
             "statusCode": 401,
-            "headers": { {"Content-Type": "application/json"} },
+            "headers": { "Content-Type": "application/json" },
             "body": f"Error: {e}"
         } 
