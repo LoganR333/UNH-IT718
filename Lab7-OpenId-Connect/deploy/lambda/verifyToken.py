@@ -5,7 +5,7 @@ import uuid
 from google.oauth2 import id_token
 from google.auth.transport import requests
 
-CLIENT_ID = "1030435771551-qnikf54b4jhlbdmm4bkhst0io28u11s4.apps.googleusercontent.comm"
+CLIENT_ID = "1030435771551-qnikf54b4jhlbdmm4bkhst0io28u11s4.apps.googleusercontent.com"
 
 # Initialize DynamoDB client
 dynamodb = boto3.resource('dynamodb')
@@ -39,7 +39,7 @@ def handler(event, context):
         return {
             "statusCode": 200,
             "headers": { "Content-Type": "application/json",
-                       "Set-Cookie", "session="+uuid+"; Secure=true; SameSite=Lax; Path=/" },
+                       "Set-Cookie": "session="+uuid+"; Secure=true; SameSite=Lax; Path=/" },
             "body": json.dumps({"message": "Session created", "idToken": token})
         }
     
