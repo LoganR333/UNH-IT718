@@ -32,11 +32,11 @@ function displayParametersAsHTML() {
   urlParams.forEach((value, key) => {
       if ( key == "idToken" ) {
         const part1b = value.split(".")[1];
-        const part1a = atob(part1b);
-        for (const [key1, value1] of Object.entries(part1a)) {
-          html += `<tr><td>${key1}</td><td>${value1}<br></td></tr>`;
-        }
+        const jsonString = atob(part1b);
+        const jsonObject = JSON.parse(jsonString);
+        value = JSON.stringify(jsonObject, null, 2);
       }
+      html += `<tr><td>${key}</td><td>${value}</td></tr>`;
   });
   html += '</tbody></table>';
   document.body.innerHTML += html;
