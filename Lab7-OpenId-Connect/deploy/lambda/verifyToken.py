@@ -5,7 +5,7 @@ import uuid
 from google.oauth2 import id_token
 from google.auth.transport import requests
 
-CLIENT_ID = "958115105182-0rvbal5tufba8jsubammhgq3ee149vdu.apps.googleusercontent.com"
+CLIENT_ID = "1030435771551-qnikf54b4jhlbdmm4bkhst0io28u11s4.apps.googleusercontent.comm"
 
 # Initialize DynamoDB client
 dynamodb = boto3.resource('dynamodb')
