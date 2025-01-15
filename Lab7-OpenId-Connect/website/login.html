@@ -39,7 +39,7 @@
       })
       .then(data => {
         console.log('Data fetched:', data);
-        const sub = JSON.stringify(data);
+        const sub = `uuid=${data[uuid]}&idtoken=${data[idToken]}`;
         window.location.href = `/dashboard.html?${sub}`;
       })
       .catch(error => {
