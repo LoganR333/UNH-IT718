@@ -48,7 +48,7 @@
                 "Fn::ImportValue": { "Fn::Join": ["-", [{ "Ref": "DeployName" }, "s3bucket-DomainName"]] }
               },
               "CustomOriginConfig": {
-                "OriginProtocolPolicy": "http-only"
+                "OriginProtocolPolicy": "https-only"
               }
             },
             {
@@ -80,6 +80,7 @@
               "ViewerProtocolPolicy": "redirect-to-https",
               "AllowedMethods": ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
               "CachedMethods": ["GET", "HEAD"],
+              "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
               "Compress": true,
               "ForwardedValues": {
                 "QueryString": true,
