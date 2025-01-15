@@ -23,7 +23,7 @@ def handler(event, context):
             return {
                 "statusCode": 400,
                 "headers": {"Content-Type": "application/json"},
-                "body": json.dumps({"error": "JWT is required"})
+                "body": json.dumps({"error": "idToken: is required in body"})
             }
         
         # Call Google service to validate JWT
@@ -39,8 +39,8 @@ def handler(event, context):
         return {
             "statusCode": 200,
             "headers": { "Content-Type": "application/json",
-                       "Set-Cookie", "sub="+sub+"; HttpOnly; Secure=false; SameSite=Lax; Path=/" },
-            "body": json.dumps({"message": "Session created", "uuid": user_uuid})
+                       "Set-Cookie", "session="+uuid+"; HttpOnly; Secure=true; SameSite=Lax; Path=/" },
+            "body": json.dumps({"message": "Session created", "idToken": token})
         }
     
     except ValueError as e:
