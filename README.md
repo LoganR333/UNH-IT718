@@ -18,5 +18,5 @@ Labs can be completed using the relevant cloud shell in: AWS, Azure, and GCP.
 
 #  Other courseware
 > [!NOTE]
-> This repo is rapidly evolving with support materials TBD.
+> This repo may evolve to include additional support materials.
 
