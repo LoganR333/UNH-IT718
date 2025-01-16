@@ -80,7 +80,6 @@
               "ViewerProtocolPolicy": "redirect-to-https",
               "AllowedMethods": ["GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS"],
               "CachedMethods": ["GET", "HEAD"],
-              "CachePolicyId": null,
               "Compress": true,
               "ForwardedValues": {
                 "QueryString": true,
