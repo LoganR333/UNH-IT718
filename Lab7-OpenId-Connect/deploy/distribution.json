@@ -41,6 +41,7 @@
         "DistributionConfig": {
           "Enabled": true,
           "DefaultRootObject": "index.html",
+          "PriceClass": "PriceClass_100",
           "Origins": [
             {
               "Id": "S3Origin",
