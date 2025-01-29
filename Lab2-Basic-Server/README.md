@@ -4,7 +4,7 @@ For each of the three major cloud vendors (AWS, Azure, and GCP) complete the fol
 1.	Use the command shell to deploy a server running nginx.
 2.	Retrieve IP address from console.
 3.	Verify running web page.
-4.	In he console terminate the running instance.
+4.	In the console terminate the running instance.
 ### Comments about this lab
 - There are many, many, ways to deploy a server to the cloud.  This is true for every cloud vendor.  As discussed in class it is easy to follow some web-based wizard and in a few clicks have a running server.
 - This lab focuses on the API calls needed for a server deployment.
