@@ -87,17 +87,6 @@ az network nic create \
 ```
 ### Create the virtual machine with cloud-init for NGINX
 ```
-#cloud-config
-package_update: true
-package_upgrade: true
-packages:
-  - nginx
-runcmd:
-  - systemctl start nginx
-  - systemctl enable nginx
-```
-
-```
 az vm create \
   --resource-group $RESOURCE_GROUP \
   --name $VM_NAME \
@@ -106,7 +95,7 @@ az vm create \
   --admin-username $ADMIN_USERNAME \
   --ssh-key-values $SSH_KEY_PATH \
   --nics $NIC_NAME \
-  --custom-data cloud-init-nginx.txt
+  --custom-data azure-init.txt
 ```
 
 ### Output connection information
