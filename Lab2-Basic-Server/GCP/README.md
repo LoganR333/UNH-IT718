@@ -62,7 +62,7 @@ gcloud compute instances create $VM_NAME \
   --image-project=$IMAGE_PROJECT \
   --network=$NETWORK \
   --tags=http-server,https-server \
-  --metadata-from-file=ssh-keys=$METADATA_FILE \
+  --metadata-from-file ssh-keys=$METADATA_FILE \
  --metadata-from-file startup-script=init-script.sh
 ```
 ### Get the external IP address of the VM
