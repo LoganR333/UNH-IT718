@@ -95,7 +95,7 @@ az vm create \
   --admin-username $ADMIN_USERNAME \
   --ssh-key-values $SSH_KEY_PATH \
   --nics $NIC_NAME \
-  --custom-data azure-init.txt
+  --custom-data azure_init.txt
 ```
 
 ### Output connection information
