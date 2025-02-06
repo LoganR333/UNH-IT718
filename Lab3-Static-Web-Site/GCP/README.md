@@ -12,6 +12,7 @@ wget -O html.zip <your source>
 unzip html.zip
 
 YOUR_BUCKET_NAME=it718lab3
+gcloud config set project <your_project>
 ```
 > [!note]
 > It is assumed you have cloned the class repo, and your working directory is .../UNH-IT718/Lab3-Static-Web-Site/GCP
