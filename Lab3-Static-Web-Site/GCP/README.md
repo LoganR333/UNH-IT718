@@ -13,6 +13,11 @@ unzip html.zip
 
 YOUR_BUCKET_NAME=it718lab3
 ```
+> [!note]
+> It is assumed you have cloned the class repo, and your working directory is .../UNH-IT718/Lab3-Static-Web-Site/GCP
+
+At a minimum, the result of the previous commands is an index.html file is in your current directory.
+
 ### Create bucket
 ```
 gcloud storage buckets create gs://$YOUR_BUCKET_NAME \
