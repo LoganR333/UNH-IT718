@@ -14,6 +14,8 @@ YOUR_BUCKET_NAME=<your-globally-unique-name>
 REGION=us-east-2
 SOURCE_PATH=./
 ```
+At a minimum you should have an index.html filein your current directory.
+
 ### Create bucket
 ```
 aws s3api create-bucket \
@@ -37,7 +39,7 @@ aws s3api put-bucket-website --bucket $YOUR_BUCKET_NAME --website-configuration 
 }'
 ```
 ### Set AWS service access policy
-Use the policy.json in this directory. Replace the BUCKET_NAME placeholder with you bucket.
+Use the policy.json in this directory. Replace the $YOUR_BUCKET_NAME placeholder with you bucket.
 ```
 aws s3api put-bucket-policy --bucket $YOUR_BUCKET_NAME --policy file://policy.json
 ```
