@@ -14,6 +14,11 @@ ACCOUNT=it718lab3
 RESOURCE_GROUP=it718lab3
 REGION=eastus
 ```
+> [!note]
+> It is assumed you have cloned the class repo, and your working directory is .../UNH-IT718/Lab3-Static-Web-Site/Azure
+
+At a minimum, the result of the previous commands is an index.html file is in your current directory.
+
 ### Create a resource group
 ```
 az group create --name $RESOURCE_GROUP --location $REGION
