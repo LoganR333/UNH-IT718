@@ -24,6 +24,9 @@ At a minimum, the result of the previous commands is an index.html file is in yo
 az group create --name $RESOURCE_GROUP --location $REGION
 ```
 ### Create a storage account
+> [!warning]
+> Some students in the past have issues with the following command.  The command requires a registered resource provider.
+> It is OK for the lab to create the storage-account in the portal.
 ```
 az storage account create \
     --name "$ACCOUNT" \
@@ -43,7 +46,7 @@ az storage blob service-properties update \
 az storage blob upload-batch \
     --account-name "$ACCOUNT" \
     --destination '$web' \
-    --source ./
+    --source ./the-directory-holding-your-html-content
 ```
 ### Retrieve the URL
 ```
