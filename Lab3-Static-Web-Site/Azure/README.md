@@ -25,7 +25,7 @@ az group create --name $RESOURCE_GROUP --location $REGION
 ```
 ### Create a storage account
 > [!warning]
-> Some students in the past have issues with the following command.  The command requires a registered resource provider.
+> Some students in the past have had issues with the following command.  The command requires a registered resource provider.
 > It is OK for the lab to create the storage-account in the portal.
 ```
 az storage account create \
