@@ -4,8 +4,8 @@
 3.	Validate execution.
 
 ### Setup environment
+`PROJECT_ID="kengraf-com"  # Replace with your GCP project ID`
 ```
-PROJECT_ID="kengraf-com"  # Replace with your GCP project ID
 REGION=us-east1
 APP_NAME=return-uuid
 gcloud config set project $PROJECT_ID
