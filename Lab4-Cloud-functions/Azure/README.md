@@ -45,7 +45,7 @@ az functionapp cors add \
 ```
 ### Create functionzip
 ```
-cd <project-folder>
+cd <code-folder>  # i.e. ~/UNH71.../Azure/code
 zip -r functionapp.zip .
 ```
 ### Deploy the code
