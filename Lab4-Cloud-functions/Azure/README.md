@@ -4,10 +4,7 @@
 3.	Validate execution.
 
 > [!NOTE]
-> functionapp names must be globally unique.  Thus you will need to replace "return-uuid" in the commands below, as well as renaming the "code/return-uuid" folder.  
-
-> [!WARNING]
-> As of Jan 6, 2025: "az functionapp" generates "CryptographyDeprecationWarning:" warnings.  This is a known bug and for lab purposes can be ignored.
+> functionapp names must be globally unique.  
 
 ### Set up your environment:
 ```
