@@ -60,7 +60,7 @@ az functionapp deployment source config-zip \
 > [!NOTE]
 > The function needs to remain available until the lab is graded.
 
-The functionapp URL is https://**your-app-name**.azurewebsite.net/api/return-uuid
+The functionapp URL is https://**your-app-name**.azurewebsites.net/api/return-uuid
 
 Show screenshots of using wget from the cloud shell and a browser fetch.  
 ![cloudshell](Lab4-Azure-cli.png)
