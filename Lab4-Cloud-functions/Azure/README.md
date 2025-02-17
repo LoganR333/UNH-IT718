@@ -14,6 +14,7 @@
 ACCOUNT=it718lab4
 RESOURCE_GROUP=it718lab4
 REGION=eastus
+APP_NAME=return-uuid
 ```
 ### Create a resource group
 ```
@@ -35,7 +36,7 @@ az functionapp create \
     --runtime python \
     --runtime-version 3.11 \
     --functions-version 4 \
-    --name return-uuid \
+    --name $APP_NAME \
     --storage-account $ACCOUNT  --os-type Linux
 az functionapp cors add \
     --name $APP_NAME \
@@ -51,7 +52,7 @@ zip -r functionapp.zip .
 ```
 az functionapp deployment source config-zip \
     --resource-group $RESOURCE_GROUP \
-    --name return-uuid \
+    --name $APP_NAME \
     --src functionapp.zip
 ```
 ## Lab report
