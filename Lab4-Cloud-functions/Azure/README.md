@@ -52,7 +52,7 @@ zip -r functionapp.zip .
 ```
 az functionapp deployment source config-zip \
     --resource-group $RESOURCE_GROUP \
-    --name $APP_NAME \
+    --name return-uuid \
     --src functionapp.zip
 ```
 ## Lab report
