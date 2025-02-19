@@ -6,7 +6,7 @@
 ### Create Database
 ```
 DB_ARN=`aws dynamodb create-table \
-    --table-name Lab5-session \
+    --table-name Lab6-session \
     --attribute-definitions AttributeName=email,AttributeType=S \
     --key-schema AttributeName=email,KeyType=HASH \
     --billing-mode PAY_PER_REQUEST --query "TableDescription.TableArn" --output text`
