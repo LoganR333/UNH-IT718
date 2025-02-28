@@ -26,7 +26,7 @@ aws lambda create-function --function-name Lab6-session --runtime python3.13 \
     --role $ROLE_ARN --handler Lab6-session.lambda_handler --zip-file fileb://function.zip \
     --query "FunctionName" --output text
 aws lambda create-function-url-config --function-name Lab6-session --auth-type NONE
-aws lambda add-permission --function-name Lab5-session --action lambda:InvokeFunctionUrl \
+aws lambda add-permission --function-name Lab6-session --action lambda:InvokeFunctionUrl \
     --principal "*" --function-url-auth-type NONE --statement-id FunctionURLPublicAccess
 ```
 ### Attach DynamoDB Permissions to the Role
