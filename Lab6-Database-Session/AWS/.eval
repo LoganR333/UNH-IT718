@@ -1,0 +1,8 @@
+url=`aws lambda get-function-url-config --function-name Lab6-session --query "FunctionUrl" --output text`
+echo $URL
+U1=`curl ${URL}new?email=test-user | jq '.uuid' | tr -d '"'`
+echo $U1
+curl -b "uuid=${U1}" ${URL}get?email=test-user; echo
+U2=`curl ${URL}new?email=test-user | jq '.uuid' | tr -d '"'`
+curl -b "uuid=${U1}" ${URL}get?email=test-user; echo
+curl -b "uuid=${U2}" ${URL}get?email=test-user; echo
