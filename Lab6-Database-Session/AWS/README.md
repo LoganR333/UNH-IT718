@@ -1,7 +1,7 @@
 # AWS												
-1.	Identify static web site you would like to publish on the web.
-2.	Push the web content to cloud storage.
-3.	Make the cloud storage publicly available.
+1.	Create a database to store UUIDs
+2.	Deploy lambda function with proper permissions
+3.	Test functionality
 
 ### Create Database
 ```
@@ -12,7 +12,7 @@ DB_ARN=`aws dynamodb create-table \
     --billing-mode PAY_PER_REQUEST --query "TableDescription.TableArn" --output text`
 sed -i "s|YOUR_DB_ARN|${DB_ARN}|g" Lab6-dynamodb-policy.json
 ```
-### Create an IAM Role for Lambd
+### Create an IAM Role for Lambda
 ```
 aws iam create-role \
     --role-name Lab6-LambdaDynamoDBRole \
@@ -54,5 +54,6 @@ aws lambda get-function-url-config --function-name Lab6-session --query "Functio
 ```
 ### Lab report commands to validate deployment
 The sample screenshot below shows adding a new user (twice to generate a new and old uuid).  Then testing both the new and old uuid.
+Provide the screenshot and the function URL as a link in your lab report.
 
 ![CLI screen capture](Lab6-AWS-cli.png)
