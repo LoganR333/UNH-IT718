@@ -16,7 +16,7 @@
       "Type": "AWS::S3::Bucket",
       "Properties": {
         "BucketName" : {"Ref": "S3bucketName" },
-        "AccessControls": "Private"
+        "AccessControl": "Private"
       }
     }
   },
