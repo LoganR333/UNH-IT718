@@ -26,7 +26,7 @@
       "Export": { "Name": "S3BucketName" }
     },
     "S3BucketArn": {
-      "Value": { "Fn::Sub": "arn:aws:s3:::${S3BucketName}/*" },
+      "Value": { "Fn::Sub": "arn:aws:s3:::${S3bucketName}/*" },
       "Export": { "Name": "S3BucketArn" }
     },
     "S3BucketRegionalDomainName": {
