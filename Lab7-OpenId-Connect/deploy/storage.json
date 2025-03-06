@@ -47,13 +47,13 @@
     }
   },
   "Outputs": {
-    "S3BucketDomainName" : {
-      "Value" :  { "Fn::GetAtt": ["S3Bucket", "DomainName"] },
-      "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "s3bucket", "DomainName" ]]}}
+    "S3BucketName": {
+      "Value": { "Ref": "S3Bucket" },
+      "Export": { "Name": "S3BucketName" }
     },
-    "S3BucketWebsiteURL" : {
-      "Value": {"Fn::GetAtt": ["S3Bucket", "WebsiteURL"]},
-      "Export" : { "Name" : {"Fn::Join": ["-", [{"Ref" : "DeployName"}, "s3bucket", "URL" ]]}}
+    "S3BucketRegionalDomainName": {
+      "Value": { "Fn::GetAtt": ["S3Bucket", "RegionalDomainName"] },
+      "Export": { "Name": "S3BucketRegionalDomainName" }
     }
   }
 }
