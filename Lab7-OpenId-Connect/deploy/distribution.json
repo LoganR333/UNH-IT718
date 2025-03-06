@@ -45,12 +45,22 @@
             {
               "Effect": "Allow",
               "Principal": {
-                "Service": "cloudfront.amazonaws.com"
+                "AWS": {
+                  "Fn::Sub": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginAccessIdentity}"
+                }
               },
               "Action": "s3:GetObject",
               "Resource": { "Fn::ImportValue": "S3BucketArn" }
             }
           ]
+        }
+      }
+    },
+    "CloudFrontOriginAccessIdentity": {
+      "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+      "Properties": {
+        "CloudFrontOriginAccessIdentityConfig": {
+          "Comment": "OAI for CloudFront to access S3"
         }
       }
     },
@@ -65,10 +75,11 @@
             {
               "Id": "S3Origin",
               "DomainName": { "Fn::ImportValue": "S3BucketRegionalDomainName"  },
-              "OriginPath": "/*",
-              "CustomOriginConfig": {
-                "OriginProtocolPolicy": "https-only"
-              }
+              "S3OriginConfig": {
+                "OriginAccessIdentity": {
+                  "Fn::Sub": "origin-access-identity/cloudfront/${CloudFrontOriginAccessIdentity}"
+                }
+              },
             },
             {
               "Id": "ApiOrigin",
