@@ -38,9 +38,7 @@
     "BucketPolicy": {
       "Type": "AWS::S3::BucketPolicy",
       "Properties": {
-        "Bucket": {
-          "Ref": "S3Bucket"
-        },
+        "Bucket": { "Fn::ImportValue": "S3BucketName" },
         "PolicyDocument": {
           "Version": "2012-10-17",
           "Statement": [
@@ -50,7 +48,7 @@
                 "Service": "cloudfront.amazonaws.com"
               },
               "Action": "s3:GetObject",
-              "Resource": { "Fn::Sub": "arn:aws:s3:::${S3Bucket}/*" },
+              "Resource": { "Fn::Sub": "arn:aws:s3:::${S3BucketName}/*" },
               "Condition": {
                 "StringEquals": {
                   "AWS:SourceArn": { "Fn::Sub": "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}" }
