@@ -59,6 +59,17 @@
         }
       }
     },
+    "CloudFrontOriginAccessControl": {
+      "Type": "AWS::CloudFront::OriginAccessControl",
+      "Properties": {
+        "OriginAccessControlConfig": {
+          "Name": "MyCloudFrontOAC",
+          "SigningProtocol": "sigv4",
+          "SigningBehavior": "always",
+          "OriginAccessControlOriginType": "s3"
+        }
+      }
+    },
     "CloudFrontDistribution": {
       "Type": "AWS::CloudFront::Distribution",
       "Properties": {
