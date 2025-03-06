@@ -16,23 +16,7 @@
       "Type": "AWS::S3::Bucket",
       "Properties": {
         "BucketName" : {"Ref": "S3bucketName" },
-        "OwnershipControls": {
-          "Rules": [
-            {
-              "ObjectOwnership": "ObjectWriter"
-            }
-          ]
-        },
-        "PublicAccessBlockConfiguration": {
-          "BlockPublicAcls": false,
-          "IgnorePublicAcls": false,
-          "BlockPublicPolicy": false,
-          "RestrictPublicBuckets": false
-        },
-        "WebsiteConfiguration": {
-          "IndexDocument": "index.html",
-          "ErrorDocument": "error.html"
-        }
+        "AccessControls": "Private"
       }
     },
     "BucketPolicy": {
@@ -46,19 +30,15 @@
           "Statement": [
             {
               "Effect": "Allow",
-              "Principal": "*",
+              "Principal": {
+                "Service": "cloudfront.amazonaws.com"
+              },
               "Action": "s3:GetObject",
-              "Resource": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:aws:s3:::",
-                    {
-                      "Ref": "S3Bucket"
-                    },
-                    "/*"
-                  ]
-                ]
+              "Resource": { "Fn::Sub": "arn:aws:s3:::${S3Bucket}/*" },
+              "Condition": {
+                "StringEquals": {
+                  "AWS:SourceArn": { "Fn::ImportValue": "CloudFrontDistributionArn" }
+                }
               }
             }
           ]
