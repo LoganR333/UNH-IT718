@@ -48,7 +48,14 @@
                 "Service": "cloudfront.amazonaws.com"
               },
               "Action": "s3:GetObject",
-              "Resource": { "Fn::ImportValue": "S3BucketArn" }
+              "Resource": { "Fn::ImportValue": "S3BucketArn" },
+              "Condition": {
+                "StringEquals": {
+                  "AWS:SourceArn": {
+                    "Fn::Sub": "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
+                  }
+                }
+              }
             }
           ]
         }
@@ -58,7 +65,7 @@
       "Type": "AWS::CloudFront::OriginAccessControl",
       "Properties": {
         "OriginAccessControlConfig": {
-          "Name": "MyCloudFrontOAC",
+          "Name": "it718lab7CloudFrontOAC",
           "SigningProtocol": "sigv4",
           "SigningBehavior": "always",
           "OriginAccessControlOriginType": "s3"
