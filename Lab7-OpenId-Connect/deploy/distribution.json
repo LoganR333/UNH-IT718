@@ -78,7 +78,8 @@
               "DomainName": { "Fn::ImportValue": "S3BucketRegionalDomainName"  },
               "CustomOriginConfig": {
                 "OriginProtocolPolicy": "https-only"
-              }
+              },
+              "OriginAccessControlId": { "Ref": "CloudFrontOriginAccessControl" }
             },
             {
               "Id": "ApiOrigin",
