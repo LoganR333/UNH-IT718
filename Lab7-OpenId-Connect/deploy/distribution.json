@@ -48,14 +48,7 @@
                 "Service": "cloudfront.amazonaws.com"
               },
               "Action": "s3:GetObject",
-              "Resource": { "Fn::ImportValue": "S3BucketArn" },
-              "Condition": {
-                "StringEquals": {
-                  "AWS:SourceArn": {
-                    "Fn::Sub": "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
-                  }
-                }
-              }
+              "Resource": { "Fn::ImportValue": "S3BucketArn" }
             }
           ]
         }
