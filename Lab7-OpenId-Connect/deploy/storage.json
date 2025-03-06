@@ -25,6 +25,10 @@
       "Value": { "Ref": "S3Bucket" },
       "Export": { "Name": "S3BucketName" }
     },
+    "S3BucketArn": {
+      "Value": { "Fn::Sub": "arn:aws:s3:::${S3BucketName}/*" },
+      "Export": { "Name": "S3BucketArn" }
+    },
     "S3BucketRegionalDomainName": {
       "Value": { "Fn::GetAtt": ["S3Bucket", "RegionalDomainName"] },
       "Export": { "Name": "S3BucketRegionalDomainName" }
