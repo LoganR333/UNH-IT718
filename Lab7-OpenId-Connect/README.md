@@ -3,11 +3,11 @@ Using the lessons learned in the previous labs, build out a complete serverless 
 
 ### What the Application does
 - Forces a login based on Google ID. (/index.html redirects to /login.html) 
-- The OIDC JWT is sent as a POST callback to /verify_token.
+- The OIDC JWT is sent as a POST callback to /v1/verify_token.
 - The callback is handled by a lambda function:
   - Generates a UUID
   - Stores the UUIC and OIDC provided email in DynamoDB
-  - Redirects back to /index.html
+  - Redirects to /dashboard.html
 - /index.html displays: OIDC JWT contents, email, and UUID values.
 
 ### Components
@@ -57,7 +57,7 @@ deploy.sh takes one argument.  A prefix name to be used in naming resources.
 > Make your prefix name globally unique and lowercase.  This is a S3 limitation.  "it718" is not going to fly.
 
 When a stack deployment completes, one or more URLs will be shown.  You can use these URLs to connect to your S3, Lambda, API, etc.  
-Copy the CloudFront URL.  Example: "https://d1mvssppd7zkjp.cloudfront.net"  Go back to the Google Development console and add this as a URI
+Copy the CloudFront URL.  Example: "https://d1mvssppd7zkjp.cloudfront.net"  Go back to the Google Development console and add this as "Authorized JavaScript origins" and to "Authorized redirect URIs" add the url with "/v1/verifyToken" append.  Example: "https://d1mvssppd7zkjp.cloudfront.net/v1/verifyToken"
 
 ### S3
 The bucket holds the ./website content and the ./deploy/lambda zip package
