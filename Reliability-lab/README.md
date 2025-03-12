@@ -21,5 +21,5 @@ This will take 4-5 minutes for each of the stacks to be created.
 - Would this be a good application for use of spot instances?
   
 > [!IMPORTANT]
-> CLEAN UP
+> CLEAN UP!  
 > Goto AWS Console: CloudFormation and delete the HealthCheckLab and WebApp1-VPC stacks
