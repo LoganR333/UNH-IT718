@@ -84,7 +84,6 @@ Resources:
   VPC:
     Type: 'AWS::EC2::VPC'
     Properties:
-      #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html
       CidrBlock: !Ref VPCIPv4CidrBlock
       EnableDnsSupport: true
       EnableDnsHostnames: true
@@ -96,15 +95,12 @@ Resources:
             - - !Ref NamingPrefix
               - VPC
   VPCFlowLogGroup:
-    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html
     Type: "AWS::Logs::LogGroup"
     DeletionPolicy: Delete
     Properties:
-      #We omit LogGroupName so a unique one is generated
       #LogGroupName:
       RetentionInDays: !Ref VPCFlowLogRetention
   VPCFlowLog:
-    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-flowlog.html
     Type: "AWS::EC2::FlowLog"
     DependsOn: VPCFlowLogGroup
     Properties:
@@ -116,7 +112,6 @@ Resources:
       ResourceType: VPC
       TrafficType: ALL
   VPCFlowLogRole:
-    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html
     Type: 'AWS::IAM::Role'
     Properties:
       RoleName: !Sub '${NamingPrefix}-VPCFlowLog-${AWS::Region}-${VPC}'
@@ -145,7 +140,6 @@ Resources:
                   - 'logs:PutLogEvents'
                 Resource: !Sub 'arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:${AWS::StackName}-VPCFlowLogGroup-*'
   IGW:
-    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html
     Type: 'AWS::EC2::InternetGateway'
     Properties:
       Tags:
@@ -155,7 +149,6 @@ Resources:
             - - !Ref NamingPrefix
               - IGW
   IGWAttach:
-    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-gateway-attachment.html
     Type: 'AWS::EC2::VPCGatewayAttachment'
     Properties:
       VpcId: !Ref VPC
@@ -163,7 +156,6 @@ Resources:
       #VpnGatewayId
   InternetRoute:
     Type: 'AWS::EC2::Route'
-    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html
     Properties:
       DestinationCidrBlock: 0.0.0.0/0
       #EgressOnlyInternetGatewayId
@@ -174,7 +166,6 @@ Resources:
       RouteTableId: !Ref InternetRouteTable
       #VpcPeeringConnectionId
   InternetRouteTable:
-    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route-table.html
     Type: 'AWS::EC2::RouteTable'
     Properties:
       VpcId: !Ref VPC
@@ -191,7 +182,6 @@ Resources:
   ALB1Subnet1:
     Condition: ALB1Enabled
     Type: 'AWS::EC2::Subnet'
-    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
     Properties:
       AvailabilityZone: !Select
         - 0
@@ -204,7 +194,6 @@ Resources:
   ALB1Subnet2:
     Condition: ALB1Enabled
     Type: 'AWS::EC2::Subnet'
-    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
     Properties:
       AvailabilityZone: !Select
         - 1
@@ -217,7 +206,6 @@ Resources:
   ALB1Subnet3:
     Condition: ALB1Enabled
     Type: 'AWS::EC2::Subnet'
-    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html
     Properties:
       AvailabilityZone: !Select
         - 2
@@ -230,7 +218,6 @@ Resources:
   ALB1Subnet1RouteToInternet:
     Condition: ALB1Enabled
     Type: 'AWS::EC2::SubnetRouteTableAssociation'
-    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-route-table-assoc.html
     DependsOn:
       - ALB1Subnet1
       - InternetRouteTable
@@ -243,7 +230,7 @@ Resources:
       - ALB1Subnet2
       - InternetRouteTable
     Type: 'AWS::EC2::SubnetRouteTableAssociation'
-    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-route-table-assoc.html
+
     Properties:
       RouteTableId: !Ref InternetRouteTable
       SubnetId: !Ref ALB1Subnet2
@@ -253,7 +240,6 @@ Resources:
       - ALB1Subnet3
       - InternetRouteTable
     Type: 'AWS::EC2::SubnetRouteTableAssociation'
-    #https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-route-table-assoc.html
     Properties:
       RouteTableId: !Ref InternetRouteTable
       SubnetId: !Ref ALB1Subnet3
