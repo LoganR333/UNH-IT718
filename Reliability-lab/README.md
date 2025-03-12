@@ -6,7 +6,7 @@
 From class lab clone
 ```
 cd UNH-IT718/Reliabiltiy-lab
-sh deploy
+sh deploy.sh
 ```
 
 This will take 4-5 minutes for each of the 2 stacks.
