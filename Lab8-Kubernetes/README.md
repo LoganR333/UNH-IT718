@@ -4,9 +4,9 @@ This is a collaborative lab and will be completed in-class by the entire class.
 
 The lab will be based on GCP's  "Build a guestbook on Kubernetes engine" tutorial. [Link to demo docs](https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook?hl=en_US)
 
-[Tutorial: Guestbook
-Use Google’s cloud shell:](https://shell.cloud.google.com/)
-![image](https://github.com/user-attachments/assets/83c0eded-1edb-44f6-b0fc-489446e5e9cf)
+
+[Googlecloud shell:](https://shell.cloud.google.com/)
+[Tutorial](https://github.com/user-attachments/assets/83c0eded-1edb-44f6-b0fc-489446e5e9cf)
 
 
 > [!TIP]
